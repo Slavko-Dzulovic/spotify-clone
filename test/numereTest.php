@@ -19,6 +19,9 @@
         echo $numera['id'];
         echo $numera['naziv'];
     }
+
+    $n = $dao->getNumeraById(1);
 ?>
+<h1><?php echo $n['id']; ?></h1>
 </body>
 </html>
