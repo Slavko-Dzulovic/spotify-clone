@@ -5,8 +5,9 @@ class DAONumere
 {
     private $db;
 
-    private $GETALLNUMERE = "SELECT * FROM numere ORDER BY id ASC;";
-    private $GETNUMERABYID = "SELECT * FROM numere WHERE id = ?";
+    private $GETALLNUMERE = "SELECT * FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id ORDER BY id ASC;";
+    private $GETNUMERABYID = "SELECT * FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE n.id = ?;";
+    private $GETNUMEREBYZANR = "SELECT * FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE zanr_id = ?;";
 
     public function __construct()
     {
@@ -29,6 +30,16 @@ class DAONumere
         $statment->execute();
 
         $result = $statment->fetch();
+        return $result;
+    }
+
+    public function getNumereByZanr($zanr)
+    {
+        $statment = $this->db->prepare($this->GETNUMEREBYZANR);
+        $statment->bindValue(1, $zanr);
+        $statment->execute();
+
+        $result = $statment->fetchAll();
         return $result;
     }
 
