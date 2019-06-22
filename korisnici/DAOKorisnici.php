@@ -41,4 +41,16 @@ class DAOKorisnici
         $result = $statment->fetch();
         return $result;
     }
+
+    public function checkIfKorisnikExistLogin($loginCredential)
+    {
+        $statment = $this->db->prepare($this->SELECTIFKORISNIKEXIST);
+        $statment->bindValue(1, $loginCredential);
+        $statment->bindValue(2, $loginCredential);
+
+        $statment->execute();
+
+        $result = $statment->fetch();
+        return $result;
+    }
 }

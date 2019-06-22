@@ -3,7 +3,6 @@ require_once './DAOKorisnici.php';
 
 class controllerKorisnici
 {
-
     function gotoComplete()
     {
         include './viewCompleteRegister.php';
@@ -14,11 +13,18 @@ class controllerKorisnici
         include './viewRegisterUser.php';
     }
 
+    function gotoLogin()
+    {
+        include "./viewLoginUser.php";
+    }
+
     private function hashPassword($lozinka)
     {
         $lozinka = md5($lozinka);
         return $lozinka;
     }
+
+
 
     private function checkIfUserExist($korisnicko_ime, $email)
     {
@@ -36,11 +42,63 @@ class controllerKorisnici
         }
     }
 
+    function loginUser()
+    {
+        $ck = new controllerKorisnici();
+        $dao = new DAOKorisnici();
+
+        $loginCredential = isset($_POST['loginCredential']) ? $this->sanitiseInput($_POST['loginCredential']) : "";
+        $lozinka = isset($_POST['lozinka']) ? $this->sanitiseInput($_POST['lozinka']) : "";
+        $remember_user = isset($_POST['remember_user']) ? $_POST['remember_user'] : "";
+
+        if(!empty($loginCredential) && !empty($lozinka))
+        {
+            $lozinka = $this->hashPassword($lozinka);
+            $postojeciKorisnik = $dao->checkIfKorisnikExistLogin($loginCredential);
+
+            if(($loginCredential == $postojeciKorisnik['korisnicko_ime'] || $loginCredential == $postojeciKorisnik['mejl']) && $lozinka == $postojeciKorisnik['lozinka'])
+            {
+                session_start();
+                if(isset($_SESSION['postojeciKorisnik']))
+                {
+                    unset($_SESSION['postojeciKorisnik']);
+                    $_SESSION['postojeciKorisnik']['loginCredential'] = $loginCredential;
+                    $_SESSION['postojeciKorisnik']['lozinka'] = $lozinka;
+                    $id = $postojeciKorisnik['id'];
+
+                    unset($_SESSION['postojeciKorisnik']);
+
+                    include '../numere/viewDashboard.php';
+                }
+                else
+                {
+                    $_SESSION['postojeciKorisnik']['loginCredential'] = $loginCredential;
+                    $_SESSION['postojeciKorisnik']['lozinka'] = $lozinka;
+                    $id = $postojeciKorisnik['id'];
+                    include '../numere/viewDashboard.php';
+                }
+            }
+            else
+            {
+                $msg = "Ne postoji takav korisnik!";
+                include './viewLoginUser.php';
+            }
+        }
+        else
+        {
+            $msg = "Popunite sva polja!";
+            include './viewLoginUser.php';
+        }
+
+
+
+    }
+
 
     function registerUser()
     {
         $dao = new DAOKorisnici();
-        $ct = new controllerKorisnici();
+        $ck = new ControllerKorisnici();
 
         $ime = isset($_POST['ime'])? $this->sanitiseInput($_POST['ime']) : "";
         $prezime = isset($_POST['prezime'])? $this->sanitiseInput($_POST['prezime']) : "";
@@ -49,27 +107,41 @@ class controllerKorisnici
         $pol = isset($_POST['pol'])? $this->sanitiseInput($_POST['pol']) : "";
         $datum_rodj = isset($_POST['datum_rodj'])? $this->sanitiseInput($_POST['datum_rodj']) : "";
         $lozinka = isset($_POST['lozinka'])? $this->sanitiseInput($_POST['lozinka']) : "";
+        $lozinkapotvrda = isset($_POST['lozinkapotvrda'])? $this->sanitiseInput($_POST['lozinkapotvrda']) : "";
         $premijum = isset($_POST['premijum'])? $_POST['premijum'] : "";
 
-        if(!empty($ime) && !empty($prezime) && !empty($korisnicko_ime) && !empty($email) && !empty($pol) && !empty($datum_rodj) && !empty($lozinka) && !empty($premijum))
+        if($premijum=="on")
         {
-            $userExist = $ct->checkIfUserExist($korisnicko_ime, $email);
+            $premijum=1;
+        }
+        else $premijum=0;
+
+        if(!empty($ime) && !empty($prezime) && !empty($korisnicko_ime) && !empty($email) && !empty($pol) && !empty($datum_rodj) && !empty($lozinka))
+        {
+            $userExist = $ck->checkIfUserExist($korisnicko_ime, $email);
             if($userExist == 0)
             {
                 if (strlen($lozinka) > 8)
                 {
-                    if(filter_var($email, FILTER_VALIDATE_EMAIL))
+                    if($lozinka==$lozinkapotvrda)
                     {
-                        $lozinka = $ct->hashPassword($lozinka);
+                        if(filter_var($email, FILTER_VALIDATE_EMAIL))
+                        {
+                            $lozinka = $ck->hashPassword($lozinka);
 
-                        $dao = new DAOKorisnici();
-                        $dao->insertKorisnik($ime, $prezime, $korisnicko_ime, $email, $pol, $datum_rodj, $lozinka, $premijum);
+                            $dao->insertKorisnik($ime, $prezime, $korisnicko_ime, $email, $pol, $datum_rodj, $lozinka, $premijum);
 
-                        include './viewCompleteRegister.php';
+                            include './viewCompleteRegister.php';
+                        }
+                        else
+                        {
+                            $msg = "Pogresan format mejl adrese!";
+                            include './viewRegisterUser.php';
+                        }
                     }
                     else
                     {
-                        $msg = "Pogresan format mejl adrese!";
+                        $msg = "Lozinke se ne poklapaju!";
                         include './viewRegisterUser.php';
                     }
                 }
@@ -81,8 +153,6 @@ class controllerKorisnici
             }
             else
             {
-                var_dump($this->checkIfUserExist($korisnicko_ime, $email));
-                var_dump($dao->checkIfKorisnikExist($korisnicko_ime, $email));
                 $msg = "Korisnik vec postoji!";
                 include './viewRegisterUser.php';
             }

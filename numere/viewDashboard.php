@@ -1,6 +1,12 @@
 <?php
     require_once '../numere/controllerNumere.php';
-    $numera = isset($numera)? $numera : "";
+    require_once '../numere/DAONumere.php';
+
+    $dao = new DAONumere();
+    $numera = $dao->getNumeraById(1);
+
+    $numera = isset($numera) ? $numera : "";
+
     if(!empty($numera)) {
         ?>
         <!doctype html>

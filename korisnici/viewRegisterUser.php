@@ -16,7 +16,7 @@
 <form action="../korisnici/" method="post">
 
     <label for="ime">Ime:</label><br>
-    <input type="text" name="ime" placeholder="Unesite ime..." value=" <?php //echo($_POST['ime']) ?>"><br>
+    <input type="text" name="ime" placeholder="Unesite ime..."><br>
     <label for="prezime">Prezime:</label><br>
     <input type="text" name="prezime" placeholder="Unesite prezime..." ><br>
     <label for="korisnicko_ime">Korisnicko ime:</label><br>
@@ -32,8 +32,10 @@
     <input type="date" name="datum_rodj"><br>
     <label for="lozinka">Lozinka:</label><br>
     <input type="password" name="lozinka" placeholder="Unesite lozinku..."><br>
-    <label for="premijum">Premijum?:</label><br>
-    <input type="checkbox" name="premijum"><br>
+    <label for="lozinkapotvrda">Potvrdite lozinku:</label><br>
+    <input type="password" name="lozinkapotvrda" placeholder="Unesite lozinku..."><br>
+    <label for="premijum">Premijum?: </label>
+    <input type="checkbox" name="premijum" > <br>
     <input type="submit" name="action" value="Registruj se"><br>
 
 </form>
