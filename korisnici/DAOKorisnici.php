@@ -7,7 +7,7 @@ class DAOKorisnici
     private $db;
 
     private $INSERTKORISNIK = "INSERT INTO korisnici(ime, prezime, korisnicko_ime, mejl, pol, datum_rodj, lozinka, premijum, admin) VALUES (?,?,?,?,?,?,?,?,0)";
-    private $SELECTIFKORISNIKEXIST = "SELECT COUNT(*) FROM korisnici WHERE korisnicko_ime = ? OR mejl = ?";
+    private $SELECTIFKORISNIKEXIST = "SELECT * FROM korisnici WHERE korisnicko_ime = ? OR mejl = ?";
 
 
     public function __construct()
@@ -17,17 +17,17 @@ class DAOKorisnici
 
     public function insertKorisnik($ime, $prezime, $korisnicko_ime, $email, $pol, $datum_rodj, $lozinka, $premijum)
     {
-        $statment = $this->db->prepare($this->INSERTKORISNIK);
-        $statment->bindValue(1, $ime);
-        $statment->bindValue(2, $prezime);
-        $statment->bindValue(3, $korisnicko_ime);
-        $statment->bindValue(4, $email);
-        $statment->bindValue(5, $pol);
-        $statment->bindValue(6, $datum_rodj);
-        $statment->bindValue(7, $lozinka);
-        $statment->bindValue(8, $premijum);
+        $statement = $this->db->prepare($this->INSERTKORISNIK);
+        $statement->bindValue(1, $ime);
+        $statement->bindValue(2, $prezime);
+        $statement->bindValue(3, $korisnicko_ime);
+        $statement->bindValue(4, $email);
+        $statement->bindValue(5, $pol);
+        $statement->bindValue(6, $datum_rodj);
+        $statement->bindValue(7, $lozinka);
+        $statement->bindValue(8, $premijum);
 
-        $statment->execute();
+        $statement->execute();
     }
 
     public function checkIfKorisnikExist($korisnicko_ime, $mejl)

@@ -2,7 +2,7 @@
 require_once './controllerKorisnici.php';
 require_once '../numere/controllerNumere.php';
 
-$action = isset($_REQUEST['action'])? $_REQUEST['action'] : "";
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "gotoRegister";
 
 switch ($_SERVER['REQUEST_METHOD'])
 {

@@ -1,6 +1,6 @@
 <?php
-    $ime = isset($_GET['ime'])? $_GET['ime'] : "";
-    $prezime = isset($_GET['prezime'])? $_GET['prezime'] : "";
+    $ime = isset($ime) ? $ime : "";
+    $prezime = isset($prezime) ? $prezime : "";
 ?>
 <!doctype html>
     <html lang="en">
@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <h1>USEPSNO STE SE REGISTROVALI <?php echo $ime. ' ' . $prezime; ?></h1>
+        <h1>USPЕSNO STE SE REGISTROVALI <?php echo $ime. ' ' . $prezime; ?>!</h1>
 
         <a href="./?action=dash">Idi na dash!</a>
 
