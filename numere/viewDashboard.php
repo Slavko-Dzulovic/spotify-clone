@@ -1,5 +1,5 @@
 <?php
-    require_once './controllerNumere.php';
+    require_once '../numere/controllerNumere.php';
     $numera = isset($numera)? $numera : "";
     if(!empty($numera)) {
         ?>

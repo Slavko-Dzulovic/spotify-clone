@@ -1,3 +1,3 @@
 <?php
-header("Location:./numere/?action=dash");
+header("Location:./korisnici/?action=gotoRegister");
 ?>

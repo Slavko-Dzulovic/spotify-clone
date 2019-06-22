@@ -1,6 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-require_once './DAONumere.php';
+require_once '../numere/DAONumere.php';
 
     class controllerNumere
     {
@@ -8,7 +7,7 @@ require_once './DAONumere.php';
         {
             $dao = new DAONumere();
             $numera = $dao->getNumeraById(1);
-            include './viewDashboard.php';
+            include '../numere/viewDashboard.php';
         }
     }
 
