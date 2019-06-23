@@ -2,9 +2,6 @@
     require_once '../numere/controllerNumere.php';
     require_once '../numere/DAONumere.php';
 
-    $dao = new DAONumere();
-    $numera = $dao->getNumeraById(1);
-
     $numera = isset($numera) ? $numera : "";
 
     if(!empty($numera)) {
@@ -25,7 +22,7 @@
         <audio controls>
             <source src="<?php echo $numera['url']; ?>" type="audio/mpeg">
         </audio>
-
+        <a href="../korisnici/?action=gotoLogout">Odjavi se!</a>
         </body>
         </html>
         <?php

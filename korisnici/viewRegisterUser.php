@@ -1,8 +1,20 @@
 <?php
+    require_once '../numere/controllerNumere.php';
 
     $msg = isset($msg) ? $msg : "";
     echo $msg;
 
+if(session_status() == PHP_SESSION_NONE)
+{
+    session_start();
+}
+
+if(isset($_SESSION['loggedIn']))
+{
+    header('Location:./?action=dash');
+}
+else
+{
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,6 +52,8 @@
 
 </form>
 
+<a href="../korisnici/?action=gotoLogin">Imas nalog? Prijavi se!</a>
 
 </body>
 </html>
+<?php } ?>

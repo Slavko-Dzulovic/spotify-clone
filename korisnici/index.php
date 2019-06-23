@@ -1,10 +1,8 @@
 <?php
 require_once './controllerKorisnici.php';
-require_once '../numere/controllerNumere.php';
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "gotoRegister";
 $ck = new controllerKorisnici();
-$cn = new controllerNumere();
 
 switch ($_SERVER['REQUEST_METHOD'])
 {
@@ -15,7 +13,7 @@ switch ($_SERVER['REQUEST_METHOD'])
                 $ck->gotoComplete();
                 break;
             case 'dash':
-                $cn->gotoDash();
+                header("Location:../numere/?action=dash");
                 break;
 
             case 'gotoRegister':
@@ -23,7 +21,11 @@ switch ($_SERVER['REQUEST_METHOD'])
                 break;
 
             case 'gotoLogin':
-                $ck->gotoRegister();
+                $ck->gotoLogin();
+                break;
+
+            case 'gotoLogout':
+                $ck->logoutUser();
                 break;
         }
         break;

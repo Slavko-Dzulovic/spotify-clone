@@ -59,23 +59,38 @@ class controllerKorisnici
             if(($loginCredential == $postojeciKorisnik['korisnicko_ime'] || $loginCredential == $postojeciKorisnik['mejl']) && $lozinka == $postojeciKorisnik['lozinka'])
             {
                 session_start();
-                if(isset($_SESSION['postojeciKorisnik']))
+                if(isset($_SESSION['loggedIn']))
                 {
-                    unset($_SESSION['postojeciKorisnik']);
-                    $_SESSION['postojeciKorisnik']['loginCredential'] = $loginCredential;
-                    $_SESSION['postojeciKorisnik']['lozinka'] = $lozinka;
+                    unset($_SESSION['loggedIn']);
+                    $_SESSION['loggedIn']['loginCredential'] = $loginCredential;
+                    $_SESSION['loggedIn']['lozinka'] = $lozinka;
                     $id = $postojeciKorisnik['id'];
 
-                    unset($_SESSION['postojeciKorisnik']);
+                    if($remember_user == "Yes") {
+                        $toCookie = array("user" =>$_SESSION["loggedIn"]->loginCredential);
+                        $json = json_encode($toCookie);
+                        setcookie("json_cookie", $json, time() + (3600), "/"); // 86400sec = 1 dan, 3600sec = 1h
+                    } else {
+                        setcookie("json_cookie", "", time()-3600, "/"); // 86400sec = 1 dan, 3600sec = 1h
+                    }
 
-                    include '../numere/viewDashboard.php';
+                    header('Location:./?action=dash');
                 }
                 else
                 {
-                    $_SESSION['postojeciKorisnik']['loginCredential'] = $loginCredential;
-                    $_SESSION['postojeciKorisnik']['lozinka'] = $lozinka;
+                    $_SESSION['loggedIn']['loginCredential'] = $loginCredential;
+                    $_SESSION['loggedIn']['lozinka'] = $lozinka;
                     $id = $postojeciKorisnik['id'];
-                    include '../numere/viewDashboard.php';
+
+                    if($remember_user == "Yes") {
+                        $toCookie = array("user" =>$_SESSION["loggedIn"]->loginCredential);
+                        $json = json_encode($toCookie);
+                        setcookie("json_cookie", $json, time() + (3600), "/"); // 86400sec = 1 dan, 3600sec = 1h
+                    } else {
+                        setcookie("json_cookie", "", time()-3600, "/"); // 86400sec = 1 dan, 3600sec = 1h
+                    }
+
+                    header('Location:./?action=dash');
                 }
             }
             else
@@ -110,11 +125,11 @@ class controllerKorisnici
         $lozinkapotvrda = isset($_POST['lozinkapotvrda'])? $this->sanitiseInput($_POST['lozinkapotvrda']) : "";
         $premijum = isset($_POST['premijum'])? $_POST['premijum'] : "";
 
-        if($premijum=="on")
+        if($premijum == "on")
         {
-            $premijum=1;
+            $premijum = 1;
         }
-        else $premijum=0;
+        else $premijum = 0;
 
         if(!empty($ime) && !empty($prezime) && !empty($korisnicko_ime) && !empty($email) && !empty($pol) && !empty($datum_rodj) && !empty($lozinka))
         {
@@ -161,6 +176,17 @@ class controllerKorisnici
         {
             $msg = "NISTE POPUNILI SVA POLJA!";
             include './viewRegisterUser.php';
+        }
+    }
+
+    function logoutUser () {
+        session_start();
+        if(isset($_SESSION['loggedIn'])) {
+                session_destroy();
+                unset($_SESSION['loggedIn']);
+                //$remember_user = $rmbr_u;
+                //include 'viewLogin.php';
+                header("Location:../index.php");
         }
     }
 

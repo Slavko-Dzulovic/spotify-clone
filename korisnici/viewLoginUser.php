@@ -1,11 +1,22 @@
 <?php
+    require_once '../numere/controllerNumere.php';
+
     $msg = isset($msg) ? $msg : "";
     echo $msg;
+    if(session_status() == PHP_SESSION_NONE)
+    {
+        session_start();
+    }
 
-
+if(isset($_SESSION['loggedIn']))
+    {
+        header('Location:./?action=dash');
+    }
+    else
+    {
+        $js = isset($_COOKIE["json_cookie"])? $_COOKIE["json_cookie"] : NULL;
+        $cookie = json_decode($js, true);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +31,7 @@
     <form action="../korisnici/index.php" method="post">
         <label for="loginCredential">Korisničko ime ili mejl:</label>
         <br>
-        <input type="text" name="loginCredential">
+        <input type="text" name="loginCredential" value="<?php echo $cookie['user']; ?>">
 
         <br>
 
@@ -29,7 +40,7 @@
         <input type="password" name="lozinka">
 
         <br>
-        <input type="checkbox" name="remember_user" value="Yes"> Zapamti me
+        <input type="checkbox" name="remember_user" value="Yes" checked> Zapamti me
         <br>
         <input type="submit" name="action" value="Uloguj se">
     </form>
@@ -38,3 +49,4 @@
 
     </body>
 </html>
+<?php } ?>

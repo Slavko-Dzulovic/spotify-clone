@@ -5,6 +5,9 @@ require_once '../numere/DAONumere.php';
     {
         function gotoDash()
         {
+            $dao = new DAONumere();
+            $numera = $dao->getNumeraById(1);
+
             include '../numere/viewDashboard.php';
         }
     }
