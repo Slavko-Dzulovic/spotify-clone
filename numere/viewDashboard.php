@@ -16,13 +16,15 @@ if (!empty($numere)) {
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
         <script type="text/javascript" src="../assets/js/functions.js"></script>
+        <script type="text/javascript" src="../assets/js/volumeSlider.js"></script>
 
         <link rel="stylesheet" type="text/css" href="../assets/css/playerStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
         <title>Dashboard - Mngpfy</title>
     </head>
     <body class="container">
@@ -37,7 +39,9 @@ if (!empty($numere)) {
                 <button onclick='setNewSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT) ?>)'>Pusti</button>
             </div>
             <div class="col-3">
-                <button onclick='addToQueue(<?php echo json_encode($numera, JSON_PRETTY_PRINT)?>)'>Dodaj u red za pustanje</button>
+                <button onclick='addToQueue(<?php echo json_encode($numera, JSON_PRETTY_PRINT) ?>)'>Dodaj u red za
+                    pustanje
+                </button>
             </div>
         </div>
     <?php } ?>
@@ -79,11 +83,17 @@ if (!empty($numere)) {
                             </div>
                             <div class="col-md-6">
                                 <p id="song-current-time" class="align-middle"></p>
+                                <div id="player">
+                                    <i class="fa fa-volume-down"></i>
+                                    <div id="volume"></div>
+                                    <i class="fa fa-volume-up"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <img id="song-cover" src="../assets/img/template.svg" alt="..." class="img-thumbnail cover-img"
+                        <img id="song-cover" src="../assets/img/template.svg" alt="..."
+                             class="img-thumbnail cover-img"
                              width="200px" height="200px">
                     </div>
                 </div>

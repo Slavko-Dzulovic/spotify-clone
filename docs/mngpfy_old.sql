@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2019 at 11:44 PM
+-- Generation Time: Jun 21, 2019 at 10:16 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -54,8 +54,7 @@ CREATE TABLE `autori` (
 --
 
 INSERT INTO `autori` (`id`, `ime`, `prezime`, `zemlja`, `bend`, `datum_pojavljivanja`) VALUES
-(1, 'Dire Straits', '', 'Engleska', 1, '1977-06-08'),
-(2, 'Neil', 'Young', 'Kanada', 0, '1960-10-04');
+(1, 'Dire Straits', '', 'Engleska', 1, '1977-06-08');
 
 -- --------------------------------------------------------
 
@@ -76,15 +75,6 @@ CREATE TABLE `korisnici` (
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `korisnici`
---
-
-INSERT INTO `korisnici` (`id`, `ime`, `prezime`, `korisnicko_ime`, `mejl`, `pol`, `datum_rodj`, `lozinka`, `premijum`, `admin`) VALUES
-(1, 'stefan', 'Mirkovic', 'stef98', 'jagssi14@gmail.com', 'm', '2019-06-14', 'c55143f7e4fab8622f32e587eb90cdab', 0, 0),
-(2, 'Mirko', 'Spanac', 'spanac123', 'jagssi@nadlanu.com', 'm', '2019-06-14', 'fdc9b22ce91545f5ac66658e06db7a53', 0, 0),
-(3, 'Ilija', 'Jovanovic', 'ikac2009', 'ilijajovanovic@gmail.com', 'm', '2019-06-30', '5d4fddf73bf7e5a8806a96e89e6c83dd', 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -95,7 +85,7 @@ CREATE TABLE `metapodaci` (
   `id` int(11) NOT NULL,
   `format` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `velicina` int(30) NOT NULL,
-  `ref_fajla` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
   `ref_omot` varchar(120) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -103,10 +93,8 @@ CREATE TABLE `metapodaci` (
 -- Dumping data for table `metapodaci`
 --
 
-INSERT INTO `metapodaci` (`id`, `format`, `velicina`, `ref_fajla`, `ref_omot`) VALUES
-(1, 'mp3', 6, 'http://k007.kiwi6.com/hotlink/rvkw4q4mpw/dire-straits-sultans-of-swing.mp3', 'https://is3-ssl.mzstatic.com/image/thumb/Music/v4/c6/55/6d/c6556dd3-e25d-62d4-19ae-204c78185b96/source/1200x1200bb.jpg'),
-(2, 'mp3', 12312, 'http://k007.kiwi6.com/hotlink/6begnf2rxd/Dire-Straits-Water-Of-Love.mp3', 'https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Water_of_lovesingle.jpg/220px-Water_of_lovesingle.jpg'),
-(3, 'mp3', 21312, 'http://k007.kiwi6.com/hotlink/nsb8toewqr/Neil-Young_-_Heart-Of-Gold.mp3', 'http://1.bp.blogspot.com/-X-KVRbnnqtA/TshhdOkZgKI/AAAAAAAADKY/x7OgNtQyV2k/s320/1230340.jpg');
+INSERT INTO `metapodaci` (`id`, `format`, `velicina`, `url`, `ref_omot`) VALUES
+(1, 'mp3', 6, 'http://k007.kiwi6.com/hotlink/rvkw4q4mpw/dire-straits-sultans-of-swing.mp3', 'https://images-na.ssl-images-amazon.com/images/I/71ATrOjzR5L._SY355_.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,9 +117,7 @@ CREATE TABLE `numere` (
 --
 
 INSERT INTO `numere` (`id`, `naziv`, `duzina_trajanja`, `datum_objavljivanja`, `album_id`, `metapodatak_id`, `zanr_id`) VALUES
-(1, 'Sultans of Swing', 348, '1978-06-14', NULL, 1, 1),
-(2, 'Water of Love', 315, '2018-01-23', NULL, 2, 1),
-(3, 'Heart of Gold', 183, '2019-06-29', NULL, 3, 1);
+(1, 'Sultans of Swing', 348, '1978-06-14', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -163,9 +149,7 @@ CREATE TABLE `pripadanje_autora` (
 --
 
 INSERT INTO `pripadanje_autora` (`numera_id`, `autor_id`, `uloga`) VALUES
-(1, 1, 'Izvodjac'),
-(2, 1, 'Izvodjac'),
-(3, 2, 'Izvodjac');
+(1, 1, 'Izvodjac');
 
 -- --------------------------------------------------------
 
@@ -315,25 +299,25 @@ ALTER TABLE `albumi`
 -- AUTO_INCREMENT for table `autori`
 --
 ALTER TABLE `autori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
 --
 ALTER TABLE `korisnici`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `metapodaci`
 --
 ALTER TABLE `metapodaci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `numere`
 --
 ALTER TABLE `numere`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `plejliste`

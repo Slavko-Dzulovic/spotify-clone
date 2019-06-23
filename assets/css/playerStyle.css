@@ -115,3 +115,61 @@
     color: white;
     vertical-align: middle;
 }
+
+/* VOLUME BAR CSS */
+
+#player {
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    margin: 0 auto;
+}
+
+i {
+    position: absolute;
+    margin-top: -6px;
+    color: #666;
+}
+
+i.fa-volume-down {
+    margin-left: -70%;
+}
+
+i.fa-volume-up {
+    margin-right: -7%;
+    right: 0;
+}
+
+
+#volume {
+    position: absolute;
+    left: 0;
+    margin: 0 auto;
+    height: 5px;
+    width: 80%;
+    background: #555;
+    border-radius: 15px;
+}
+
+.ui-slider-range-min {
+    height: 5px;
+    width: 300px;
+    position: absolute;
+    background: #2ecc71;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: #fff;
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -8px;
+    cursor: pointer;
+    outline: none;
+}

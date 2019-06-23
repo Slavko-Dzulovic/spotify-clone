@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 //Play and Pause
     function play() {
+
         // start music
         if (music.paused) {
             music.play();

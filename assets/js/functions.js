@@ -33,3 +33,4 @@ function addToQueue(jsonNumera)
         console.log(JSON.parse(sessionStorage.getItem("queue")));
     }
 }
+
