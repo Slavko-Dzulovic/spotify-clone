@@ -3,12 +3,13 @@
 
     $msg = isset($msg) ? $msg : "";
     echo $msg;
+
     if(session_status() == PHP_SESSION_NONE)
     {
         session_start();
     }
 
-if(isset($_SESSION['loggedIn']))
+    if(isset($_SESSION['loggedIn']))
     {
         header('Location:./?action=dash');
     }
@@ -16,6 +17,7 @@ if(isset($_SESSION['loggedIn']))
     {
         $js = isset($_COOKIE["json_cookie"])? $_COOKIE["json_cookie"] : NULL;
         $cookie = json_decode($js, true);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +33,7 @@ if(isset($_SESSION['loggedIn']))
     <form action="../korisnici/index.php" method="post">
         <label for="loginCredential">Korisničko ime ili mejl:</label>
         <br>
-        <input type="text" name="loginCredential" value="<?php echo $cookie['user']; ?>">
+        <input type="text" name="loginCredential" value="<?php echo $cookie[0]; ?>">
 
         <br>
 

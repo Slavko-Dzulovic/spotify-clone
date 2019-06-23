@@ -4,7 +4,8 @@ require_once '../numere/DAONumere.php';
 
 $numera = isset($numera) ? $numera : "";
 
-if (!empty($numera)) {
+if (!empty($numera))
+{
     ?>
     <!doctype html>
     <html lang="en">
@@ -62,7 +63,12 @@ if (!empty($numera)) {
     </body>
     </html>
     <?php
-} else {
+}
+else
+{
     echo 'Nema pesme!';
+?>
+   <a href="../korisnici/?action=gotoLogout">Odjavi se!</a>;
+<?php
 }
 ?>
