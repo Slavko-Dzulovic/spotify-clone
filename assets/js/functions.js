@@ -21,16 +21,17 @@ function addToQueue(jsonNumera)
     if(sessionStorage.getItem("queue") != null)
     {
         var stored = JSON.parse(sessionStorage.getItem("queue"));
-        stored.push(jsonNumera);
-        sessionStorage.setItem("queue", JSON.stringify(stored));
-        console.log(JSON.parse(sessionStorage.getItem("queue")));
+        if(stored.find(jsonNumera.id && jsonNumera.naziv) != null)
+        {
+            stored.push(jsonNumera);
+            sessionStorage.setItem("queue", JSON.stringify(stored));
+        }
     }
     else
     {
         var notStored = [];
         notStored.push(jsonNumera);
         sessionStorage.setItem("queue", JSON.stringify(notStored));
-        console.log(JSON.parse(sessionStorage.getItem("queue")));
     }
 }
 

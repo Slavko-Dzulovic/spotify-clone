@@ -133,11 +133,11 @@ i {
 }
 
 i.fa-volume-down {
-    margin-left: -70%;
+    margin-left: -15%;
+    left: 0;
 }
 
 i.fa-volume-up {
-    margin-right: -7%;
     right: 0;
 }
 

@@ -137,11 +137,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             else {
                 var track = stored[0];
             }
-            console.log("Pre shifta i pusha = " + JSON.parse(sessionStorage.getItem("queue")));
             stored.shift();
             stored.push(track);
             sessionStorage.setItem("queue", JSON.stringify(stored));
-            console.log(JSON.parse(sessionStorage.getItem("queue")));
             setNewSong(track);
         }
     }
@@ -159,11 +157,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             else {
                 var track = stored[n-1];
             }
-            console.log("Pre popa i unshifta = " + JSON.parse(sessionStorage.getItem("queue")));
             stored.pop();
             stored.unshift(track);
             sessionStorage.setItem("queue", JSON.stringify(stored));
-            console.log(JSON.parse(sessionStorage.getItem("queue")));
             setNewSong(track);
         }
     }
