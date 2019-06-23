@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var music = document.getElementById('music'); // id for audio element
     var duration; // Duration of audio clip
     var pButton = document.getElementById('pButton'); // play button
+
+    var nextButton = document.getElementById('nextButton');
+
     var playhead = document.getElementById('playhead'); // playhead
     var timeline = document.getElementById('timeline'); // timeline
 
@@ -78,6 +81,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
             pButton.className = "";
             pButton.className = "play";
         }
+
+        var currDuration = music.currentTime; //song is object of audio.  song= new Audio();
+
+        var sec= new Number();
+        var min= new Number();
+        currsec = Math.floor( currDuration );
+        currmin = Math.floor( currsec / 60 );
+        currmin = currmin >= 10 ? currmin : '0' + currmin;
+        currsec = Math.floor( currsec % 60 );
+        currsec = currsec >= 10 ? currsec : '0' + currsec;
+
+        var maxDuration = duration;
+
+        var sec= new Number();
+        var min= new Number();
+        sec = Math.floor( maxDuration );
+        min = Math.floor( sec / 60 );
+        min = min >= 10 ? min : '0' + min;
+        sec = Math.floor( sec % 60 );
+        sec = sec >= 10 ? sec : '0' + sec;
+
+        document.getElementById('song-current-time').innerHTML = currmin + ":"+ currsec + "/" + min + ":"+ sec;
     }
 
 //Play and Pause
