@@ -12,8 +12,13 @@ switch ($_SERVER['REQUEST_METHOD'])
             case 'complete':
                 $ck->gotoComplete();
                 break;
+
             case 'dash':
                 header("Location:../numere/?action=dash");
+                break;
+
+            case 'dashAdmin':
+                header("Location: ./adminDashboard.php");
                 break;
 
             case 'gotoRegister':

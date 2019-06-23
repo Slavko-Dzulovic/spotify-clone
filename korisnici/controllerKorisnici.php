@@ -24,8 +24,6 @@ class controllerKorisnici
         return $lozinka;
     }
 
-
-
     private function checkIfUserExist($korisnicko_ime, $email)
     {
         $dao = new DAOKorisnici();
@@ -42,6 +40,8 @@ class controllerKorisnici
         }
     }
 
+
+
     function loginUser()
     {
         $ck = new controllerKorisnici();
@@ -50,7 +50,6 @@ class controllerKorisnici
         $loginCredential = isset($_POST['loginCredential']) ? $this->sanitiseInput($_POST['loginCredential']) : "";
         $lozinka = isset($_POST['lozinka']) ? $this->sanitiseInput($_POST['lozinka']) : "";
         $remember_user = isset($_POST['remember_user']) ? $_POST['remember_user'] : "";
-        var_dump($remember_user);
 
         if(!empty($loginCredential) && !empty($lozinka))
         {
@@ -71,8 +70,6 @@ class controllerKorisnici
                     {
                         $toCookie = array($_SESSION["loggedIn"]['loginCredential']);
                         $json = json_encode($toCookie);
-                        echo "<br>74<br>";
-                        var_dump($json);
                         setcookie("json_cookie", $json, time() + (3600), "/");
                     }
                     else
@@ -80,9 +77,14 @@ class controllerKorisnici
                         setcookie("json_cookie", "", time()-3600, "/");
                     }
 
-                    header('Location:./?action=dash');
-
-
+                    if($postojeciKorisnik['admin']==1)
+                    {
+                        header('Location:./?action=dashAdmin');
+                    }
+                    else
+                    {
+                        header('Location:./?action=dash');
+                    }
                 }
                 else
                 {
@@ -94,21 +96,26 @@ class controllerKorisnici
                     {
                         $toCookie = array($_SESSION["loggedIn"]['loginCredential']);
                         $json = json_encode($toCookie);
-                        echo "<br>95<br>";
-                        var_dump($json);
                         setcookie("json_cookie", $json, time() + (3600), "/");
                     }
                     else
                     {
                         setcookie("json_cookie", "", time()-3600, "/");
                     }
-                    header('Location:./?action=dash');
 
+                    if($postojeciKorisnik['admin']==1)
+                    {
+                        header('Location:./?action=dashAdmin');
+                    }
+                    else
+                    {
+                        header('Location:./?action=dash');
+                    }
                 }
             }
             else
             {
-                $msg = "Ne postoji takav korisnik!";
+                $msg = "Pogrešno korisničko ime ili lozinka!";
                 include './viewLoginUser.php';
             }
         }
@@ -118,6 +125,7 @@ class controllerKorisnici
             include './viewLoginUser.php';
         }
     }
+
 
     function logoutUser()
     {
