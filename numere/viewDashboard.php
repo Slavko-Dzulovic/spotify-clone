@@ -101,6 +101,7 @@ if (!empty($numere)) {
         </div>
     </div>
 
+    <button onclick="deleteQueue()">Isprazni listu za cekanje</button>
     <a href="../korisnici/?action=gotoLogout">Odjavi se!</a>
     <script type="text/javascript" src="../assets/js/player.js"></script>
     </body>

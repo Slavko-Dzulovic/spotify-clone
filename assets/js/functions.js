@@ -21,7 +21,8 @@ function addToQueue(jsonNumera)
     if(sessionStorage.getItem("queue") != null)
     {
         var stored = JSON.parse(sessionStorage.getItem("queue"));
-        if(stored.find(jsonNumera.id && jsonNumera.naziv) != null)
+        
+        if(!stored.includes(jsonNumera))
         {
             stored.push(jsonNumera);
             sessionStorage.setItem("queue", JSON.stringify(stored));
@@ -33,5 +34,10 @@ function addToQueue(jsonNumera)
         notStored.push(jsonNumera);
         sessionStorage.setItem("queue", JSON.stringify(notStored));
     }
+}
+
+function deleteQueue()
+{
+    sessionStorage.removeItem("queue");
 }
 
