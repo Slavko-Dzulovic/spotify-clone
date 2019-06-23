@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var playhead = document.getElementById('playhead'); // playhead
     var timeline = document.getElementById('timeline'); // timeline
 
+    if (sessionStorage.getItem("queue") != null)
+    {
+        var stored = JSON.parse(sessionStorage.getItem("queue"));
+        var track = stored[0];
+        setNewSong(track);
+    }
+
 // timeline width adjusted for playhead
     var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 

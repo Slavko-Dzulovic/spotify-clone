@@ -76,13 +76,13 @@ if (!empty($numere)) {
                     <div class="col-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="song-info">
+                                <div class="song-info text-center">
                                     <p id="song-name"></p>
                                     <p id="song-author"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <p id="song-current-time" class="align-middle"></p>
+                                <p id="song-current-time" class="align-middle">--:--/--:--</p>
                                 <div id="player">
                                     <i class="fa fa-volume-down"></i>
                                     <div id="volume"></div>
