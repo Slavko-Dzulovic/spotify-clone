@@ -2,6 +2,7 @@ function setNewSong(jsonNumera) {
     var music = document.getElementById('music');
     var pButton = document.getElementById('pButton'); // play button
 
+    document.getElementById('song-id').setAttribute("value", jsonNumera.id);
     document.getElementById('song-url').setAttribute('src', jsonNumera.ref_fajla);
     document.getElementById('song-name').innerText = jsonNumera.naziv;
     document.getElementById('song-author').innerText = jsonNumera.ime + " " + jsonNumera.prezime;
@@ -9,10 +10,26 @@ function setNewSong(jsonNumera) {
     document.getElementById("music").load();
     music.currentTime = 0;
 
-    console.log(sessionStorage.getItem("loggedIn"));
-
     music.play();
     // remove play, add pause
     pButton.className = "";
     pButton.className = "pause";
+}
+
+function addToQueue(jsonNumera)
+{
+    if(sessionStorage.getItem("queue") != null)
+    {
+        var stored = JSON.parse(sessionStorage.getItem("queue"));
+        stored.push(jsonNumera);
+        sessionStorage.setItem("queue", JSON.stringify(stored));
+        console.log(JSON.parse(sessionStorage.getItem("queue")));
+    }
+    else
+    {
+        var notStored = [];
+        notStored.push(jsonNumera);
+        sessionStorage.setItem("queue", JSON.stringify(notStored));
+        console.log(JSON.parse(sessionStorage.getItem("queue")));
+    }
 }

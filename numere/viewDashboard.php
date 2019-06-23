@@ -26,18 +26,21 @@ if (!empty($numere)) {
         <title>Dashboard - Mngpfy</title>
     </head>
     <body class="container">
+    <input type="hidden" id="song-id">
 
     <?php foreach ($numere as $numera) { ?>
         <div class="row">
             <div class="col-6">
                 <p><?php echo $numera['naziv']; ?></p>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <button onclick='setNewSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT) ?>)'>Pusti</button>
+            </div>
+            <div class="col-3">
+                <button onclick='addToQueue(<?php echo json_encode($numera, JSON_PRETTY_PRINT)?>)'>Dodaj u red za pustanje</button>
             </div>
         </div>
     <?php } ?>
-
 
     <div id="wrapper">
         <audio id="music" preload="true">

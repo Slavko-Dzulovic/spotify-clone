@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var pButton = document.getElementById('pButton'); // play button
 
     var nextButton = document.getElementById('nextButton');
+    var prevButton = document.getElementById('prevButton');
 
     var playhead = document.getElementById('playhead'); // playhead
     var timeline = document.getElementById('timeline'); // timeline
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 // play button event listenter
     pButton.addEventListener("click", play);
+    nextButton.addEventListener("click", playFromQueue);
+    prevButton.addEventListener("click", playFromQueueBack);
 
 // timeupdate event listener
     music.addEventListener("timeupdate", timeUpdate, false);
@@ -120,6 +123,51 @@ document.addEventListener("DOMContentLoaded", function(event) {
             pButton.className = "play";
         }
     }
+
+    function playFromQueue()
+    {
+        if(sessionStorage.getItem("queue") != null)
+        {
+            var stored = JSON.parse(sessionStorage.getItem("queue"));
+            if(stored[0].id == document.getElementById('song-id').getAttribute("value"))
+            {
+                var track = stored[1];
+            }
+            else {
+                var track = stored[0];
+            }
+            console.log("Pre shifta i pusha = " + JSON.parse(sessionStorage.getItem("queue")));
+            stored.shift();
+            stored.push(track);
+            sessionStorage.setItem("queue", JSON.stringify(stored));
+            console.log(JSON.parse(sessionStorage.getItem("queue")));
+            setNewSong(track);
+        }
+    }
+
+    function playFromQueueBack()
+    {
+        if(sessionStorage.getItem("queue") != null)
+        {
+            var stored = JSON.parse(sessionStorage.getItem("queue"));
+            var n = stored.length;
+            if(stored[n-1].id == document.getElementById('song-id').getAttribute("value"))
+            {
+                var track = stored[n-2];
+            }
+            else {
+                var track = stored[n-1];
+            }
+            console.log("Pre popa i unshifta = " + JSON.parse(sessionStorage.getItem("queue")));
+            stored.pop();
+            stored.unshift(track);
+            sessionStorage.setItem("queue", JSON.stringify(stored));
+            console.log(JSON.parse(sessionStorage.getItem("queue")));
+            setNewSong(track);
+        }
+    }
+
+    music.addEventListener("ended", playFromQueue);
 
 // Gets audio file duration
     music.addEventListener("canplaythrough", function() {
