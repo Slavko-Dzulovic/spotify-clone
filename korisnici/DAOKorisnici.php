@@ -12,6 +12,7 @@ class DAOKorisnici
     private $GRANTADMIN = "UPDATE korisnici SET admin = 1 WHERE id = ?";
     private $GRANTPREMIJUM = "UPDATE korisnici SET premijum = 1 WHERE id = ?";
     private $DELETEKORISNIK = "DELETE FROM korisnici WHERE id = ?";
+    private $UPDATEKORISNIK = "UPDATE korisnici SET ime = ?, prezime = ?, korisnicko_ime = ?, mejl = ? WHERE ";
 
 
     public function __construct()
@@ -85,6 +86,14 @@ class DAOKorisnici
     }
 
     public function deleteKorisnik($id)
+    {
+        $statement = $this->db->prepare($this->DELETEKORISNIK);
+        $statement->bindValue(1, $id);
+
+        $statement->execute();
+    }
+
+    public function updateKorisnik($id)
     {
         $statement = $this->db->prepare($this->DELETEKORISNIK);
         $statement->bindValue(1, $id);

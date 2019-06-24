@@ -48,7 +48,7 @@ class controllerKorisnici
         include './listAllUsers.php';
     }
 
-    function deleteUser()
+    function deleteKorisnik()
     {
         $dao = new DAOKorisnici();
 
@@ -58,9 +58,44 @@ class controllerKorisnici
         header("Location: ./?action=listAllUsers");
     }
 
-    function editUser()
+    function editKorisnik()
     {
+        $dao = new DAOKorisnici();
+        $ck = new controllerKorisnici();
 
+        $ime = isset($_POST['ime'])? $this->sanitiseInput($_POST['ime']) : "";
+        $prezime = isset($_POST['prezime'])? $this->sanitiseInput($_POST['prezime']) : "";
+        $korisnicko_ime = isset($_POST['korisnicko_ime'])? $this->sanitiseInput($_POST['korisnicko_ime']) : "";
+        $mejl = isset($_POST['mejl'])? $this->sanitiseInput($_POST['mejl']) : "";
+
+
+        if(!empty($ime) && !empty($prezime) && !empty($korisnicko_ime) && !empty($mejl))
+        {
+            $userExist = $ck->checkIfUserExist($korisnicko_ime, $mejl);
+            if(($userExist == 1 && ($korisnicko_ime == $userExist['korisnicko_ime'] || $mejl == $userExist['mejl'])) || $userExist == 0)
+            {
+                if(filter_var($mejl, FILTER_VALIDATE_EMAIL))
+                {
+                    $dao->updateKorisnik($ime, $prezime, $korisnicko_ime, $mejl);
+                    include "./listAllUsers.php";
+                }
+                else
+                {
+                    $msg = "Pogresan format mejl adrese!";
+                    include './viewEditUser.php';
+                }
+            }
+            else
+            {
+                $msg = "Korisnik sa ovim korisnickom adresom ili mejlom već postoji!";
+                include './viewEditUser.php';
+            }
+        }
+        else
+        {
+            $msg = "Popunite sva polja!";
+            include "./viewEditUser.php";
+        }
     }
 
     function grantAdmin()

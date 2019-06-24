@@ -52,11 +52,14 @@
             <td><a href="./?action=grantPremijum&id=<?=$k['id'];?>">Dodeli premijum</a></td>
             <td><a href="./?action=grantAdmin&id=<?=$k['id'];?>">Dodeli admin</a></td>
             <td><a href="./?action=deleteUser&id=<?=$k['id'];?>">Obriši korisnika</a></td>
-            <td><a href="./?action=editUser&id=<?=$k['id'];?>">Uredi korisnika</a></td>
+            <td><a href="./?action=goEditUser&korisnicko_ime=<?=$k['korisnicko_ime'];?>&id=<?=$k['id'];?>">Uredi korisnika</a></td>
         </tr>
         <?php
         }?>
     </table>
+
+    <a href="./?action=dashAdmin">Nazad na admin panel</a><br>
+    <a href="./?action=gotoLogout">Odjavi se</a><br>
 
 
 </body>

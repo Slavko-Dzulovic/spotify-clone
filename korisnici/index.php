@@ -33,9 +33,14 @@ switch ($_SERVER['REQUEST_METHOD'])
                 $ck->grantAdmin();
                 break;
 
-            case 'editUser':
-                $ck->editKorisnik();
+            case 'goEditUser':
+                include "./viewEditUser.php";
+                //header("Location: ./viewEditUser.php");
                 break;
+
+            //case 'editUser':
+            //    $ck->editKorisnik();
+            //    break;
 
             case 'deleteUser':
                 $ck->deleteKorisnik();
@@ -54,6 +59,7 @@ switch ($_SERVER['REQUEST_METHOD'])
                 break;
         }
         break;
+
     case 'POST':
         switch ($action)
         {
@@ -63,6 +69,10 @@ switch ($_SERVER['REQUEST_METHOD'])
 
             case 'Uloguj se':
                 $ck->loginUser();
+                break;
+
+            case 'Sacuvaj izmene':
+                $ck->editKorisnik();
                 break;
         }
         break;
