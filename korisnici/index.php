@@ -21,6 +21,26 @@ switch ($_SERVER['REQUEST_METHOD'])
                 header("Location: ./adminDashboard.php");
                 break;
 
+            case 'listAllUsers':
+                $ck->listAllUsers();
+                break;
+
+            case 'grantPremijum':
+                $ck->grantPremijum();
+                break;
+
+            case 'grantAdmin':
+                $ck->grantAdmin();
+                break;
+
+            case 'editUser':
+                $ck->editKorisnik();
+                break;
+
+            case 'deleteUser':
+                $ck->deleteKorisnik();
+                break;
+
             case 'gotoRegister':
                 $ck->gotoRegister();
                 break;

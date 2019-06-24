@@ -40,7 +40,48 @@ class controllerKorisnici
         }
     }
 
+    function listAllUsers()
+    {
+        $dao = new DAOKorisnici();
+        $korisnici = $dao->getAllKorisnici();
 
+        include './listAllUsers.php';
+    }
+
+    function deleteUser()
+    {
+        $dao = new DAOKorisnici();
+
+        $id = isset($_GET['id']) ? $_GET['id'] : "";
+        $dao->deleteKorisnik($_GET['id']);
+
+        header("Location: ./?action=listAllUsers");
+    }
+
+    function editUser()
+    {
+
+    }
+
+    function grantAdmin()
+    {
+        $dao = new DAOKorisnici();
+
+        $id = isset($_GET['id']) ? $_GET['id'] : "";
+        $dao->grantAdmin($_GET['id']);
+
+        header("Location: ./?action=listAllUsers");
+    }
+
+    function grantPremijum()
+    {
+        $dao = new DAOKorisnici();
+
+        $id = isset($_GET['id']) ? $_GET['id'] : "";
+        $dao->grantPremijum($_GET['id']);
+
+        header("Location: ./?action=listAllUsers");
+    }
 
     function loginUser()
     {
