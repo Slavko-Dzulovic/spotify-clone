@@ -8,11 +8,12 @@ class DAOKorisnici
 
     private $INSERTKORISNIK = "INSERT INTO korisnici(ime, prezime, korisnicko_ime, mejl, pol, datum_rodj, lozinka, premijum, admin) VALUES (?,?,?,?,?,?,?,?,0)";
     private $SELECTIFKORISNIKEXIST = "SELECT * FROM korisnici WHERE korisnicko_ime = ? OR mejl = ?";
+    private $CHECKADMINPRIVILEGE = "SELECT admin FROM korisnici WHERE korisnicko_ime = ? OR mejl = ?";
     private $SELECTALLKORISNICI = "SELECT * FROM korisnici";
     private $GRANTADMIN = "UPDATE korisnici SET admin = 1 WHERE id = ?";
     private $GRANTPREMIJUM = "UPDATE korisnici SET premijum = 1 WHERE id = ?";
     private $DELETEKORISNIK = "DELETE FROM korisnici WHERE id = ?";
-    private $UPDATEKORISNIK = "UPDATE korisnici SET ime = ?, prezime = ?, korisnicko_ime = ?, mejl = ? WHERE ";
+//    private $UPDATEKORISNIK = "UPDATE korisnici SET ime = ?, prezime = ?, korisnicko_ime = ?, mejl = ? WHERE ";
 
 
     public function __construct()
@@ -93,13 +94,25 @@ class DAOKorisnici
         $statement->execute();
     }
 
-    public function updateKorisnik($id)
+    public function checkAdminPrivilege($loginCredential)
     {
-        $statement = $this->db->prepare($this->DELETEKORISNIK);
-        $statement->bindValue(1, $id);
+        $statement = $this->db->prepare($this->CHECKADMINPRIVILEGE);
+        $statement->bindValue(1, $loginCredential);
+        $statement->bindValue(2, $loginCredential);
 
         $statement->execute();
+
+        $result = $statement->fetch();
+        return $result;
     }
+
+//    public function updateKorisnik($id)
+//    {
+//        $statement = $this->db->prepare($this->DELETEKORISNIK);
+//        $statement->bindValue(1, $id);
+//
+//        $statement->execute();
+//    }
 
 
 

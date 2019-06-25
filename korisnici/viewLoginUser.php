@@ -11,7 +11,9 @@
 
     if(isset($_SESSION['loggedIn']))
     {
-        header('Location:./?action=dash');
+        if($_SESSION['loggedIn']['admin']==0)
+            header('Location:./?action=dash');
+        else header('Location:./?action=dashAdmin');
     }
     else
     {
