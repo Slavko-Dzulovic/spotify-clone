@@ -16,10 +16,11 @@
     width: 100%;
     height: 90px;
     margin: auto;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     background-color: #000000;
+    
 }
 /* Play/Pause Button */
 #pButton{
@@ -130,7 +131,7 @@
     margin: 0 auto;
 }
 
-i {
+ footer i {
     position: absolute;
     margin-top: -6px;
     color: #666;
