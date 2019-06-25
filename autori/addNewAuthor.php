@@ -43,6 +43,9 @@ if($_SESSION['loggedIn']['admin']==1)
 
         </form>
 
+        <a href="../autori/?action=listAllAuthors">Nazad na autore</a><br>
+        <a href="../korisnici/?action=dashAdmin">Nazad na admin panel</a><br>
+
     </body>
     </html>
     <?php

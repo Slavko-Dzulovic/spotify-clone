@@ -38,7 +38,7 @@
             }
             else
             {
-                $msg = "Popunite polja ime, prezime, zemlja porekla!";
+                $msg = "Popunite polja ime i zemlja porekla!";
                 include '../autori/addNewAuthor.php';
             }
 
