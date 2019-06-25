@@ -29,28 +29,35 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Login</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../assets/css/LoginCSS.css">
     </head>
     <body>
-
+    <div class="wrapper">
+        <img src="../assets/img/user.png" id="slika" alt="">
     <form action="../korisnici/index.php" method="post">
-        <label for="loginCredential">Korisničko ime ili mejl:</label>
-        <br>
-        <input type="text" name="loginCredential" value="<?php echo $cookie[0]; ?>">
 
         <br>
+        <input type="text"  class="dimension class="form-control" name="loginCredential" placeholder="Username or email" value="<?php echo $cookie[0]; ?>">
+        <br>
 
-        <label for="lozinka">Lozinka</label>
+        <input type="password" class="dimension class="form-control" placeholder="Password" name="lozinka">
         <br>
-        <input type="password" name="lozinka">
 
+        <input type="submit" class="dimension button " name="action" value="Uloguj se">
         <br>
-        <input type="checkbox" name="remember_user" value="Yes" checked> Zapamti me
-        <br>
-        <input type="submit" name="action" value="Uloguj se">
+
+        <div> <input type="checkbox" name="remember_user" value="Yes" checked> Zapamti me </div>
     </form>
 
-    <a href="../korisnici/index.php?action=gotoRegister"> Napravi nalog! </a>
-
+    <a href="../korisnici/index.php?action=gotoRegister" id="link"> Napravi nalog! </a>
+    </div>
     </body>
 </html>
 <?php } ?>
