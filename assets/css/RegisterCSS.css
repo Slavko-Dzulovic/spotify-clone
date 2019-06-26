@@ -2,11 +2,11 @@ body{
     background: whitesmoke;
 
 }
-.wrapper{
+#wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    height: 700px;
     flex-direction: column;
     background: whitesmoke;
 }
@@ -17,22 +17,30 @@ form{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 300px;
-    height: 300px;
+    width: 600px;
+    height: 600px;
     background: white;
     margin-bottom: 10px;
     box-shadow: 2px 2px grey;
 }
-.dimension{
-    height: 30px;
+.velika{
+    width: 400px;
+}
+.datum{
+    width: 160px;
+    border-radius: 5px;
+}
+#pol{
+    margin-right: 15px;
     border-radius: 5px;
 }
 .button{
-    width: 175px;
+    width: 230px;
     background-color: #222327 ;
     color: #FFFFFF;
     height: 35px;
     box-shadow: none;
+    margin-left: 10px;
 }
 .button:hover{
     color: #2ecc71;
@@ -48,3 +56,4 @@ form{
     top: 40px;
     position: relative;
 }
+

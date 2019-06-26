@@ -37,6 +37,8 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="../assets/css/LoginCSS.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <script type="text/javascript" src="../assets/js/functions.js"></script>
     </head>
     <body>
     <div class="wrapper">
@@ -57,7 +59,10 @@
     </form>
 
     <a href="../korisnici/index.php?action=gotoRegister" id="link"> Napravi nalog! </a>
-    </div>
+
+        <div class="loader-wrapper">
+            <span class="loader"><span class="loader-inner"></span></span>
+        </div>
     </body>
 </html>
 <?php } ?>
