@@ -14,6 +14,9 @@ class DAONumere
 
     private $GETALLNUMEREZANRALBUM = "SELECT n.id, n.naziv, n.duzina_trajanja, n.datum_objavljivanja, z.naziv AS 'zanr', a.naziv AS 'album' FROM numere n JOIN zanrovi z ON n.zanr_id = z.id JOIN albumi a ON a.id = n.album_id";
 
+    private $INSERTINUSERPLAYLIST = "INSERT INTO pripadanje_plejlista(plejlista_id, numera_id) VALUES (?, ?); ";
+
+    private $GETPLAYLISTBYUSER = "SELECT id FROM plejliste WHERE korinsik_id = ?;";
 
     public function __construct()
     {
@@ -35,6 +38,30 @@ class DAONumere
         $statment->execute();
 
         $result = $statment->fetchAll();
+        return $result;
+    }
+
+    public function insertNumeraInUserPlaylist($id, $numera_id)
+    {
+        $statment = $this->db->prepare($this->INSERTINUSERPLAYLIST);
+        $statment->bindValue(1, $id);
+        $statment->bindValue(2, $numera_id);
+        if($statment->execute())
+        {
+            return true;
+        }
+        else {
+            echo "Nesto je poslo naopako!";
+        }
+    }
+
+    public function getPlaylistByUser($id)
+    {
+        $statment = $this->db->prepare($this->GETPLAYLISTBYUSER);
+        $statment->bindValue(1, $id);
+        $statment->execute();
+
+        $result = $statment->fetch();
         return $result;
     }
 

@@ -45,6 +45,24 @@ class controllerNumere
         $numere = $dao->getNumeraByAlbum($album_id);
         return $numere;
     }
+
+    function addNumeraToUserPlaylist()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $id = isset($_SESSION['loggedIn']['id']) ? $_SESSION['loggedIn']['id'] : "";
+        $autor_id = isset($_GET['autor_id']) ? $_GET['autor_id'] : "";
+        $numera_id = isset($_GET['numera_id']) ? $_GET['numera_id'] : "";
+
+        $dao = new DAONumere();
+        $playlist_id = implode($dao->getPlaylistByUser($id));
+
+        if (!empty($playlist_id) && !empty($autor_id) && !empty($numera_id)) {
+            $dao->insertNumeraInUserPlaylist($playlist_id, $numera_id);
+        }
+        header("Location:../numere/?action=gotoAuthor&autorId=" . $autor_id);
+    }
 }
 
 ?>

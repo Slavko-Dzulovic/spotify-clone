@@ -22,6 +22,11 @@
                     $ct = new controllerNumere();
                     $ct->listAllTracks();
                     break;
+
+                case 'addToFavourite':
+                    $ct = new controllerNumere();
+                    $ct->addNumeraToUserPlaylist();
+                    break;
             }
             break;
         case 'POST':

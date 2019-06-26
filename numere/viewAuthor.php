@@ -93,7 +93,7 @@ if (isset($_SESSION['loggedIn'])) {
                                                             <button id="play-button"
                                                                     onclick='setNewSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT); ?>); addToQueue(<?php echo json_encode($numere, JSON_PRETTY_PRINT); ?>, true)'>
                                                                 <i class="fas fa-play"></i></button>
-                                                            <i class="fas fa-heart"></i>
+                                                            <a href="../numere/?action=addToFavourite&autor_id=<?php echo $album['au_id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i class="fas fa-heart"></i></a>
                                                             <a href="<?php echo $numera['ref_fajla']; ?>"
                                                                download="<?php echo $numera['naziv']; ?>"
                                                                target="_blank"><i class="fas fa-arrow-down"></i></a>

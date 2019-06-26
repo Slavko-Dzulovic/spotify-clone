@@ -141,6 +141,7 @@ class controllerKorisnici
                     $_SESSION['loggedIn']['loginCredential'] = $loginCredential;
                     $_SESSION['loggedIn']['lozinka'] = $lozinka;
                     $_SESSION['loggedIn']['admin'] = $postojeciKorisnik['admin'];
+                    $_SESSION['loggedIn']['id'] = $postojeciKorisnik['id'];
                     $_SESSION['loggedIn']['ime'] = $postojeciKorisnik['korisnicko_ime'];
                     $id = $postojeciKorisnik['id'];
 
@@ -169,6 +170,7 @@ class controllerKorisnici
                     $_SESSION['loggedIn']['loginCredential'] = $loginCredential;
                     $_SESSION['loggedIn']['lozinka'] = $lozinka;
                     $_SESSION['loggedIn']['admin'] = $postojeciKorisnik['admin'];
+                    $_SESSION['loggedIn']['id'] = $postojeciKorisnik['id'];
                     $_SESSION['loggedIn']['ime'] = $postojeciKorisnik['korisnicko_ime'];
                     $id = $postojeciKorisnik['id'];
 
