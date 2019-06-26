@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2019 at 11:44 PM
+-- Generation Time: Jun 26, 2019 at 04:29 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -31,8 +31,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `albumi` (
   `id` int(11) NOT NULL,
   `naziv` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `datum_izdavanja` date NOT NULL
+  `datum_izdavanja` date NOT NULL,
+  `autor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `albumi`
+--
+
+INSERT INTO `albumi` (`id`, `naziv`, `datum_izdavanja`, `autor_id`) VALUES
+(1, 'Singlovi', '2019-06-01', 1),
+(2, 'Singlovi', '2019-06-01', 2),
+(3, 'Singlovi', '2019-06-01', 3);
 
 -- --------------------------------------------------------
 
@@ -46,16 +56,18 @@ CREATE TABLE `autori` (
   `prezime` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `zemlja` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `bend` tinyint(1) NOT NULL,
-  `datum_pojavljivanja` date DEFAULT NULL
+  `datum_pojavljivanja` date DEFAULT NULL,
+  `ref_slika` varchar(120) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `autori`
 --
 
-INSERT INTO `autori` (`id`, `ime`, `prezime`, `zemlja`, `bend`, `datum_pojavljivanja`) VALUES
-(1, 'Dire Straits', '', 'Engleska', 1, '1977-06-08'),
-(2, 'Neil', 'Young', 'Kanada', 0, '1960-10-04');
+INSERT INTO `autori` (`id`, `ime`, `prezime`, `zemlja`, `bend`, `datum_pojavljivanja`, `ref_slika`) VALUES
+(1, 'Dire Straits', '', 'Engleska', 1, '1977-06-08', 'https://tonedeaf.thebrag.com/wp-content/uploads/2018/04/dire-straits.jpg'),
+(2, 'Neil', 'Young', 'Kanada', 0, '1960-10-04', ''),
+(3, 'Queen', '', 'Engleska', 1, '1975-10-04', '');
 
 -- --------------------------------------------------------
 
@@ -106,7 +118,8 @@ CREATE TABLE `metapodaci` (
 INSERT INTO `metapodaci` (`id`, `format`, `velicina`, `ref_fajla`, `ref_omot`) VALUES
 (1, 'mp3', 6, 'http://k007.kiwi6.com/hotlink/rvkw4q4mpw/dire-straits-sultans-of-swing.mp3', 'https://is3-ssl.mzstatic.com/image/thumb/Music/v4/c6/55/6d/c6556dd3-e25d-62d4-19ae-204c78185b96/source/1200x1200bb.jpg'),
 (2, 'mp3', 12312, 'http://k007.kiwi6.com/hotlink/6begnf2rxd/Dire-Straits-Water-Of-Love.mp3', 'https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Water_of_lovesingle.jpg/220px-Water_of_lovesingle.jpg'),
-(3, 'mp3', 21312, 'http://k007.kiwi6.com/hotlink/nsb8toewqr/Neil-Young_-_Heart-Of-Gold.mp3', 'http://1.bp.blogspot.com/-X-KVRbnnqtA/TshhdOkZgKI/AAAAAAAADKY/x7OgNtQyV2k/s320/1230340.jpg');
+(3, 'mp3', 21312, 'http://k007.kiwi6.com/hotlink/nsb8toewqr/Neil-Young_-_Heart-Of-Gold.mp3', 'http://1.bp.blogspot.com/-X-KVRbnnqtA/TshhdOkZgKI/AAAAAAAADKY/x7OgNtQyV2k/s320/1230340.jpg'),
+(4, 'mp3', 21312, 'http://k007.kiwi6.com/hotlink/jalftcimo9/Queen-We-Are-The-Champions.mp3', 'https://img.cdandlp.com/2015/12/imgL/117803072.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,9 +142,10 @@ CREATE TABLE `numere` (
 --
 
 INSERT INTO `numere` (`id`, `naziv`, `duzina_trajanja`, `datum_objavljivanja`, `album_id`, `metapodatak_id`, `zanr_id`) VALUES
-(1, 'Sultans of Swing', 348, '1978-06-14', NULL, 1, 1),
-(2, 'Water of Love', 315, '2018-01-23', NULL, 2, 1),
-(3, 'Heart of Gold', 183, '2019-06-29', NULL, 3, 1);
+(1, 'Sultans of Swing', 348, '1978-06-14', 1, 1, 1),
+(2, 'Water of Love', 315, '2018-01-23', 1, 2, 1),
+(3, 'Heart of Gold', 183, '2019-06-29', NULL, 3, 1),
+(4, 'We are the Champions', 183, '1975-06-03', NULL, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +179,8 @@ CREATE TABLE `pripadanje_autora` (
 INSERT INTO `pripadanje_autora` (`numera_id`, `autor_id`, `uloga`) VALUES
 (1, 1, 'Izvodjac'),
 (2, 1, 'Izvodjac'),
-(3, 2, 'Izvodjac');
+(3, 2, 'Izvodjac'),
+(4, 3, 'Izvodjac');
 
 -- --------------------------------------------------------
 
@@ -230,7 +245,8 @@ INSERT INTO `zanrovi` (`id`, `naziv`) VALUES
 -- Indexes for table `albumi`
 --
 ALTER TABLE `albumi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `autor_id` (`autor_id`);
 
 --
 -- Indexes for table `autori`
@@ -309,13 +325,13 @@ ALTER TABLE `zanrovi`
 -- AUTO_INCREMENT for table `albumi`
 --
 ALTER TABLE `albumi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `autori`
 --
 ALTER TABLE `autori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
@@ -327,13 +343,13 @@ ALTER TABLE `korisnici`
 -- AUTO_INCREMENT for table `metapodaci`
 --
 ALTER TABLE `metapodaci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `numere`
 --
 ALTER TABLE `numere`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `plejliste`
@@ -362,6 +378,12 @@ ALTER TABLE `zanrovi`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `albumi`
+--
+ALTER TABLE `albumi`
+  ADD CONSTRAINT `albumi_ibfk_1` FOREIGN KEY (`autor_id`) REFERENCES `autori` (`id`);
 
 --
 -- Constraints for table `numere`

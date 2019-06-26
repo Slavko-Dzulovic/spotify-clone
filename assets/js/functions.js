@@ -85,6 +85,8 @@ $(document).ready(function () {
 });
 
 $(window).on("load", function () {
-    $(".loader-wrapper").fadeOut("slow");
+    $(".loader-wrapper").fadeOut(1000);
     $(".album-song-list").fadeOut("fast");
+    $("#wrapper").fadeOut(100);
+    setTimeout(function(){ $("#wrapper").fadeIn("fast"); }, 900);
 });
