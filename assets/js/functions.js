@@ -52,3 +52,39 @@ function deleteQueue() {
     sessionStorage.removeItem("queue");
 }
 
+
+var i = 0;
+function toggle() {
+    if (i == 0) {
+        document.getElementById("menu").style.left = 0;
+        i = 1;
+        document.getElementById("hamburger").style.background = '#1C1C1E';
+    }
+    else {
+        document.getElementById("menu").style.left = '-100%';
+        i = 0;
+        document.getElementById("hamburger").style.background = '#2ecc71';
+        i = 0;
+    }
+}
+$(document).ready(function () {
+    $('.toggle').click(function () {
+        $('.toggle').toggleClass('active');
+    });
+});
+
+$(document).ready(function () {
+    /*$('.fa-peace').click(function () {
+        $('.ffa').fadeToggle("slow");
+      });*/
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.album-list').click(function () {
+        $(this).parent().find(".album-song-list").fadeToggle("fast");
+    });
+});
+
+$(window).on("load", function () {
+    $(".loader-wrapper").fadeOut("slow");
+    $(".album-song-list").fadeOut("fast");
+});

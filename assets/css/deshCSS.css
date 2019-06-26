@@ -44,12 +44,12 @@ body{
       margin: 10px 0 10px 0;
   }
   .fas:hover{
-      color: #9DC70E;
+      color: #2ecc71;
   }
   .hamburger{
       width: 40px;
       height: 5px;
-      background: #9DC70E;
+      background: #2ecc71;
       position: absolute;
       transition: 0.4s ease;
   }
@@ -57,7 +57,7 @@ body{
       content: '';
       width: 40px;
       height: 5px;
-      background: #9DC70E;
+      background: #2ecc71;
       position: absolute;
       top: -10px;
       left: 0%;
@@ -67,7 +67,7 @@ body{
       content: '';
       width: 40px;
       height: 5px;
-      background: #9DC70E;
+      background: #2ecc71;
       position: absolute;
       bottom: -10px;
       left: 0%;
@@ -180,9 +180,14 @@ body{
   }
   .copyright{
       text-align: center;
-      color: #9DC70E;
+      color: #2ecc71;
       padding: 10px;
       
+  }
+
+  #play-button{
+      background-color: transparent;
+      border: none;
   }
   
   /*.ffa{
@@ -199,6 +204,9 @@ body{
       font-size: 1rem;
       margin:0 5px 0 5px ;
   }
+.fa-heart:hover{
+    color: #ff3748;
+}
   @media(max-width: 1025px){
       .mp3{
           width: 100%;

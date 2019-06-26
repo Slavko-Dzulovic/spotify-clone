@@ -29,6 +29,7 @@ if(isset($_SESSION['loggedIn'])) {
 
             <script type="text/javascript" src="../assets/js/functions.js"></script>
             <script type="text/javascript" src="../assets/js/volumeSlider.js"></script>
+            <script type="text/javascript" src="../assets/js/player.js"></script>
 
             <link rel="stylesheet" type="text/css" href="../assets/css/playerStyle.css"/>
             <link rel="stylesheet" type="text/css"
@@ -41,7 +42,14 @@ if(isset($_SESSION['loggedIn'])) {
         <?php foreach ($numere as $numera) { ?>
             <div class="row">
                 <div class="col-6">
-                    <p><?php echo $numera['naziv']; ?></p>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><?php echo $numera['naziv']; ?></p>
+                        </div>
+                        <div class="col-6">
+                            <a href="../numere/?action=gotoAuthor&autorId=<?php echo $numera['autor_id'];?>"><p><?php echo $numera['ime']; ?></p></a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-3">
                     <button onclick='setNewSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT) ?>)'>Pusti</button>

@@ -78,7 +78,7 @@
     height: 18px;
     border-radius: 50%;
     margin-top: 1px;
-    background: #1DB954;
+    background: #2ecc71;
 }
 
 #gutter{
@@ -96,7 +96,7 @@
     height: 18px;
     border-radius: 50%;
     margin-top: 1px;
-    background: rgba(0, 255, 196, 0.82);
+    background: #2ecc71;
 }
 
 .song-info{

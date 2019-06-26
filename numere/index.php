@@ -12,6 +12,10 @@
                     $ct = new controllerNumere();
                     $ct->gotoDash();
                     break;
+                case 'gotoAuthor':
+                    $ct = new controllerNumere();
+                    $ct->gotoAuthor();
+                    break;
             }
             break;
         case 'POST':
