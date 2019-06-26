@@ -16,6 +16,7 @@
                 case 'gotoAuthor':
                     $ct = new controllerNumere();
                     $ct->gotoAuthor();
+                    break;
 
                 case 'listAllTracks':
                     $ct = new controllerNumere();

@@ -28,7 +28,7 @@ class controllerNumere
         $dao = new DAONumere();
         $numere = $dao->getAllNumereZanrAlbum();
 
-        include "../numere/listAllTracks.php";
+        include "../numere/viewListAllTracks.php";
     }
 
     private function sanitiseInput($data)

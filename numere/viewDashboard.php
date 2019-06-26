@@ -116,6 +116,7 @@ if(isset($_SESSION['loggedIn'])) {
                 </div>
             </div>
         </div>
+        </div>
 
         <button onclick="deleteQueue()">Isprazni listu za cekanje</button>
         <a href="../korisnici/?action=gotoLogout">Odjavi se!</a>
@@ -129,6 +130,6 @@ if(isset($_SESSION['loggedIn'])) {
 }
 else
 {
-    header("Location: ../korisnici/viewLoginUser.php");
+    header("Location: ../korisnici/?action=gotoLogin");
 }
     ?>

@@ -1,7 +1,7 @@
 function setNewSong(jsonNumera, play = true) {
     var music = document.getElementById('music');
     var pButton = document.getElementById('pButton'); // play button
-
+    console.log(jsonNumera);
     document.getElementById('song-id').setAttribute("value", jsonNumera.track_id);
     document.getElementById('song-url').setAttribute('src', jsonNumera.ref_fajla);
     document.getElementById('song-name').innerText = jsonNumera.naziv;
@@ -30,28 +30,32 @@ function trackExistInQueue(obj, list) {
     return false;
 }
 
-function addToQueue(jsonNumera) {
-    if (sessionStorage.getItem("queue") != null) {
-        var stored = JSON.parse(sessionStorage.getItem("queue"));
-
-        if(trackExistInQueue(jsonNumera, stored) === false)
-        {
-            stored.push(jsonNumera);
-            sessionStorage.setItem("queue", JSON.stringify(stored));
-        }
-
+function addToQueue(jsonNumera, album = false) {
+    if(album === true)
+    {
+        sessionStorage.setItem("queue", JSON.stringify(jsonNumera));
+        console.log(JSON.parse(sessionStorage.getItem("queue")));
     } else {
-        var notStored = [];
-        notStored.push(jsonNumera);
-        sessionStorage.setItem("queue", JSON.stringify(notStored));
-        setNewSong(jsonNumera);
+        if (sessionStorage.getItem("queue") != null) {
+            var stored = JSON.parse(sessionStorage.getItem("queue"));
+
+            if (trackExistInQueue(jsonNumera, stored) === false) {
+                stored.push(jsonNumera);
+                sessionStorage.setItem("queue", JSON.stringify(stored));
+            }
+
+        } else {
+            var notStored = [];
+            notStored.push(jsonNumera);
+            sessionStorage.setItem("queue", JSON.stringify(notStored));
+            setNewSong(jsonNumera);
+        }
     }
 }
 
 function deleteQueue() {
     sessionStorage.removeItem("queue");
 }
-
 
 var i = 0;
 function toggle() {
