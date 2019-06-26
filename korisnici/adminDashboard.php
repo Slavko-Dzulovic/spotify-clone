@@ -24,6 +24,7 @@
 
             <a href="../korisnici/?action=listAllUsers">Izlistaj sve korisnike</a><br>
             <a href="../autori/?action=listAllAuthors">Izlistaj sve autore</a><br>
+            <a href="../numere/?action=listAllTracks">Izlistaj sve numere</a><br>
 
             <a href="../korisnici/?action=gotoLogout">Odjavi se!</a>
 

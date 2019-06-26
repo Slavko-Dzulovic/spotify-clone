@@ -14,6 +14,11 @@
 <?php
     $dao = new DAONumere();
     $numere = $dao->getAllNumere();
+
+    $sve = $dao->getAllNumereZanrAlbum();
+    var_dump($sve);
+
+
     foreach ($numere as $numera)
     {
         echo $numera['id'];
