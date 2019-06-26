@@ -21,22 +21,22 @@ class controllerNumere
 
             include '../numere/viewAuthor.php';
         }
+    }
 
-        function listAllTracks()
-        {
-            $dao = new DAONumere();
-            $numere = $dao->getAllNumereZanrAlbum();
+    function listAllTracks()
+    {
+        $dao = new DAONumere();
+        $numere = $dao->getAllNumereZanrAlbum();
 
-            include "../numere/listAllTracks.php";
-        }
+        include "../numere/listAllTracks.php";
+    }
 
-        private function sanitiseInput($data)
-        {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
+    private function sanitiseInput($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 
     function getNumeraByAlbum($album_id)
