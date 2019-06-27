@@ -18,6 +18,11 @@
                     $ct->gotoAuthor();
                     break;
 
+                case 'goAddTrack':
+                    $ct = new controllerNumere();
+                    $ct->gotoAuthor();
+                    break;
+
                 case 'listAllTracks':
                     $ct = new controllerNumere();
                     $ct->listAllTracks();

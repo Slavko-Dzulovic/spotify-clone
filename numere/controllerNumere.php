@@ -15,7 +15,8 @@ class controllerNumere
     {
         $autor_id = isset($_GET['autorId']) ? $_GET['autorId'] : "";
 
-        if (!empty($autor_id)) {
+        if (!empty($autor_id))
+        {
             $dao = new DAONumere();
             $albumi = $dao->getAlbumAndNumereByAutorId($autor_id);
 

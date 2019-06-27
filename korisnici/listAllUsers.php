@@ -38,7 +38,6 @@
                 <td>Dodeli premijum</td>
                 <td>Dodeli admin</td>
                 <td>Obriši</td>
-    <!--            <td>Izmeni</td>-->
             </tr>
 
             <?php
@@ -52,13 +51,12 @@
                 <td><?php echo $k['korisnicko_ime'] ?></td>
                 <td><?php echo $k['mejl'] ?></td>
                 <td><?php echo $k['pol'] ?></td>
-                <td><?php echo $k['datum_rodj'] ?>?</td>
-                <td><?php echo $k['premijum'] ?>?</td>
-                <td><?php echo $k['admin'] ?>?</td>
+                <td><?php echo $k['datum_rodj'] ?></td>
+                <td><?php echo $k['premijum'] ?></td>
+                <td><?php echo $k['admin'] ?></td>
                 <td><a href="./?action=grantPremijum&id=<?=$k['id'];?>">Dodeli premijum</a></td>
                 <td><a href="./?action=grantAdmin&id=<?=$k['id'];?>">Dodeli admin</a></td>
                 <td><a href="./?action=deleteUser&id=<?=$k['id'];?>">Obriši korisnika</a></td>
-                <!--<td><a href="./?action=goEditUser&korisnicko_ime=<//?=$k['korisnicko_ime'];?>&id=<//?=$k['id'];?>">Uredi korisnika</a></td>-->
             </tr>
             <?php
             }?>

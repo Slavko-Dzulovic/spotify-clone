@@ -5,7 +5,7 @@ class DAOAutori
 {
 	private $db;
 
-	private $INSERTAUTOR = "INSERT INTO autori (ime, prezime, zemlja, bend, datum_pojavljivanja) VALUES (?, ?, ?, ?, ?)";
+	private $INSERTAUTOR = "INSERT INTO autori (ime, prezime, zemlja, bend, datum_pojavljivanja, ref_slika) VALUES (?, ?, ?, ?, ?, ?)";
 	private $DELETEAUTOR = "DELETE  FROM autori WHERE id = ?";
 	private $SELECTBYID = "SELECT * FROM autori WHERE id = ?";
 	private $GETALLAUTHORS = "SELECT * FROM autori";
@@ -15,7 +15,7 @@ class DAOAutori
 		$this->db = DB::createInstance();
 	}
 
-	public function insertAutor($ime, $prezime, $zemlja, $bend, $datum_pojavljivanja)
+	public function insertAutor($ime, $prezime, $zemlja, $bend, $datum_pojavljivanja, $ref_slika)
 	{
 		$statement = $this->db->prepare($this->INSERTAUTOR);
 		$statement->bindValue(1, $ime);
@@ -23,6 +23,7 @@ class DAOAutori
 		$statement->bindValue(3, $zemlja);
 		$statement->bindValue(4, $bend);
 		$statement->bindValue(5, $datum_pojavljivanja);
+		$statement->bindValue(6, $ref_slika);
 		
 		$statement->execute();
 	}

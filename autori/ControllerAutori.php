@@ -29,19 +29,19 @@
             $zemlja = isset($_POST['zemlja']) ? $this->sanitiseInput($_POST['zemlja']) : "";
             $bend = isset($_POST['bend']) ? $_POST['bend'] : "";
             $datum_pojavljivanja = isset($_POST['datum_pojavljivanja']) ? $_POST['datum_pojavljivanja'] : "";
+            $ref_slika = isset($_POST['ref_slika']) ? $this->sanitiseInput($_POST['ref_slika']) : "";
 
-            if(!empty($ime) && !empty($datum_pojavljivanja) && !empty($zemlja))
+            if(!empty($ime) && !empty($datum_pojavljivanja) && !empty($zemlja) && !empty($ref_slika))
             {
-                $dao->insertAutor($ime, $prezime, $zemlja, $bend, $datum_pojavljivanja);
+                $dao->insertAutor($ime, $prezime, $zemlja, $bend, $datum_pojavljivanja, $ref_slika);
                 $autori = $dao->getAllAuthors();
                 include "../autori/listAllAuthors.php";
             }
             else
             {
-                $msg = "Popunite polja ime i zemlja porekla!";
+                $msg = "Popunite polja ime, datum pojavljivanja, zemlja porekla i slika autora!";
                 include '../autori/addNewAuthor.php';
             }
-
         }
     }
 

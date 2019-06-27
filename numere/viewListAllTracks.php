@@ -30,6 +30,7 @@ if (isset($_SESSION['loggedIn'])) {
                 <td>Datum objavljivanja</td>
                 <td>Album</td>
                 <td>Žanr</td>
+                <td>Autor</td>
             </tr>
 
             <?php foreach ($numere as $n) { ?>
@@ -38,8 +39,9 @@ if (isset($_SESSION['loggedIn'])) {
                     <td><?php echo $n['naziv'] ?></td>
                     <td><?php echo gmdate("H:i:s", $n['duzina_trajanja']); ?></td>
                     <td><?php echo $n['datum_objavljivanja'] ?></td>
-                    <td><?php echo $n['album'] ?></td>
+                    <td><?php echo $n['album']." (".$n['ime_autora'].")"?></td>
                     <td><?php echo $n['zanr'] ?></td>
+                    <td><?php echo $n['ime_autora'] ?></td>
                 </tr>
                 <?php
             } ?>

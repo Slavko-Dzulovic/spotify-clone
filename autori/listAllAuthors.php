@@ -32,7 +32,7 @@ if($_SESSION['loggedIn']['admin']==1)
             <td>Zemlja</td>
             <td>Bend?</td>
             <td>Datum pojavljivanja</td>
-<!--            <td>Obriši</td>-->
+            <td>Link ka slici</td>
         </tr>
 
         <?php
@@ -46,7 +46,7 @@ if($_SESSION['loggedIn']['admin']==1)
                 <td><?php echo $a['zemlja'] ?></td>
                 <td><?php echo $a['bend'] ?></td>
                 <td><?php echo $a['datum_pojavljivanja'] ?></td>
-<!--                <td><a href="./?action=deleteAuthor&id=--><?//=$a['id'];?><!--">Obriši autora</a></td>-->
+                <td><?php echo $a['ref_slika'] ?></td>
             </tr>
             <?php
         }?>
