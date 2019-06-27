@@ -18,9 +18,47 @@ class DAONumere
 
     private $GETPLAYLISTBYUSER = "SELECT id FROM plejliste WHERE korinsik_id = ?;";
 
+    private $INSERTMETAPODATAK = "INSERT INTO metapodaci(ref_fajla, ref_omot) VALUES(?, ?)";
+    private $GETLASTMETAPODATAKID = "SELECT id FROM metapodaci ORDER BY id DESC LIMIT 1";
+
+    private $INSERTNUMERA = "INSERT INTO numere(naziv, duzina_trajanja, datum_objavljivanja, album_id, metapodatak_id, zanr_id)";
+
     public function __construct()
     {
         $this->db = DB::createInstance();
+    }
+
+    public function getLastMetapodatakID()
+    {
+        $statement = $this->db->prepare($this->GETLASTMETAPODATAKID);
+        $statement->execute();
+
+        $result = $statement->fetch();
+        return $result;
+    }
+
+    public function insertNumera($naziv, $duzina_trajanja, $datum_objavljivanja, $album_id, $metapodatak_id, $zanr_id)
+    {
+        $statement = $this->db->prepare($this->INSERTNUMERA);
+        $statement->bindValue(1, $naziv);
+        $statement->bindValue(2, $duzina_trajanja);
+        $statement->bindValue(3, $datum_objavljivanja);
+        $statement->bindValue(4, $album_id);
+        $statement->bindValue(5, $metapodatak_id);
+        $statement->bindValue(6, $zanr_id);
+
+
+
+        $statement->execute();
+    }
+
+    public function insertMetapodatak($ref_fajla, $ref_omot)
+    {
+        $statement = $this->db->prepare($this->INSERTMETAPODATAK);
+        $statement->bindValue(1, $ref_fajla);
+        $statement->bindValue(2, $ref_omot);
+
+        $statement->execute();
     }
 
     public function getAllNumere()

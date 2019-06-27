@@ -32,6 +32,48 @@ class controllerNumere
         include "../numere/viewListAllTracks.php";
     }
 
+    function addNewTrack()
+    {
+        $dao = new DAONumere();
+
+        $naziv = isset($_POST['naziv']) ? $this->sanitiseInput($_POST['naziv']) : "";
+        $duzina_trajanja = isset($_POST['duzina_trajanja']) ? $this->sanitiseInput($_POST['duzina_trajanja']) : "";
+        $datum_objavljivanja = isset($_POST['datum_objavljivanja']) ? $_POST['datum_objavljivanja'] : "";
+        $album_id = isset($_POST['album_naziv']) ? $_POST['album_naziv'] : "";
+        $autor_id = isset($_POST['autor_id']) ? $_POST['autor_id'] : "";
+        $zanr_id = isset($_POST['zanr']) ? $_POST['zanr'] : "";
+        $linkFajl = isset($_POST['ref_fajl']) ? $this->sanitiseInput($_POST['ref_fajl']) : "";
+        $linkOmot = isset($_POST['ref_omot']) ? $this->sanitiseInput($_POST['ref_omot']) : "";
+
+        var_dump($naziv);
+        var_dump($duzina_trajanja);
+        var_dump($datum_objavljivanja);
+        var_dump($album_id);
+        var_dump($autor_id);
+        var_dump($zanr_id);
+        var_dump($linkFajl);
+        var_dump($linkOmot);
+
+
+        if(!empty($naziv) && !empty($duzina_trajanja) && !empty($datum_objavljivanja) && !empty($album_id) && !empty($linkFajl) && !empty($linkOmot) && !empty($autor_id) && !empty($zanr_id))
+        {
+            $dao->insertMetapodatak($linkFajl, $linkOmot);
+            $metapodatakID = $dao->getLastMetapodatakID();
+            $dao->insertNumera($naziv, $duzina_trajanja, $datum_objavljivanja, $album_id, $metapodatakID, $zanr_id);
+            $dao->getAllNumereZanrAlbum();
+
+            include "./viewListAllTracks.php";
+        }
+        else
+        {
+            $msg = "Popunite sva polja!";
+//            header("Location: ./?action=goAddTrack&msg=$msg");
+            include "./viewAddNewTrack.php";
+        }
+
+
+    }
+
     private function sanitiseInput($data)
     {
         $data = trim($data);

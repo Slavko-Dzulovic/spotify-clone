@@ -39,7 +39,7 @@ if($_SESSION['loggedIn']['admin']==1)
             <label for="datum_pojavljivanja">Datum pojavljivanja</label><br>
             <input type="date" name="datum_pojavljivanja" ><br>
             <label for="ref_slika">Slika autora</label><br>
-            <input type="ref_slika" name="ref_slika"><br>
+            <input type="text" name="ref_slika"><br>
 
             <input type="submit" name="action" value="Sacuvaj autora">
 

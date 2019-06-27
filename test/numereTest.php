@@ -15,8 +15,8 @@
     $dao = new DAONumere();
     $numere = $dao->getAllNumere();
 
-    $sve = $dao->getAllNumereZanrAlbum();
-    var_dump($sve);
+//    $dao->insertMetapodatak("test", "test123");
+//    var_dump($dao->getLastMetapodatak());
 
 
     foreach ($numere as $numera)
