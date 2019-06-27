@@ -1,7 +1,5 @@
 <?php
     require_once './controllerNumere.php';
-    require_once '../albumi/DAOAlbumi.php';
-    require_once '../zanrovi/DAOZanrovi.php';
 
     $action = isset($_REQUEST['action'])? $_REQUEST['action'] : "";
 
@@ -22,11 +20,7 @@
 
                 case 'goAddTrack':
                     $ct = new controllerNumere();
-                    $daoAlbumi = new DAOAlbumi();
-                    $daoZanrovi = new DAOZanrovi();
-                    $podaci_albumi = $daoAlbumi->getAllAlbumiAndAutori();
-                    $zanrovi = $daoZanrovi->getAllZanrovi();
-                    include '../numere/viewAddNewTrack.php';
+                    $ct->gotoInsertNew();
                     break;
 
                 case 'listAllTracks':

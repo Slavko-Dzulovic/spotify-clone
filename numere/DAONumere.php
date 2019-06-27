@@ -20,8 +20,10 @@ class DAONumere
 
     private $INSERTMETAPODATAK = "INSERT INTO metapodaci(ref_fajla, ref_omot) VALUES(?, ?)";
     private $GETLASTMETAPODATAKID = "SELECT id FROM metapodaci ORDER BY id DESC LIMIT 1";
+    private $GETLASTNUMERAID = "SELECT id FROM numere ORDER BY id DESC LIMIT 1";
 
-    private $INSERTNUMERA = "INSERT INTO numere(naziv, duzina_trajanja, datum_objavljivanja, album_id, metapodatak_id, zanr_id)";
+    private $INSERTNUMERA = "INSERT INTO numere(naziv, duzina_trajanja, datum_objavljivanja, album_id, metapodatak_id, zanr_id) VALUES (?, ?, ?, ?, ?, ?)";
+    private $INSERTPRIPADANJEAUTORA = "INSERT INTO pripadanje_autora(numera_id, autor_id, uloga) VALUES (?, ?, ?)";
 
     public function __construct()
     {
@@ -31,6 +33,15 @@ class DAONumere
     public function getLastMetapodatakID()
     {
         $statement = $this->db->prepare($this->GETLASTMETAPODATAKID);
+        $statement->execute();
+
+        $result = $statement->fetch();
+        return $result;
+    }
+
+    public function getLastNumeraID()
+    {
+        $statement = $this->db->prepare($this->GETLASTNUMERAID);
         $statement->execute();
 
         $result = $statement->fetch();
@@ -47,8 +58,6 @@ class DAONumere
         $statement->bindValue(5, $metapodatak_id);
         $statement->bindValue(6, $zanr_id);
 
-
-
         $statement->execute();
     }
 
@@ -57,6 +66,16 @@ class DAONumere
         $statement = $this->db->prepare($this->INSERTMETAPODATAK);
         $statement->bindValue(1, $ref_fajla);
         $statement->bindValue(2, $ref_omot);
+
+        $statement->execute();
+    }
+
+    public function insertPripadanjeAutora($numera_id, $autor_id, $uloga)
+    {
+        $statement = $this->db->prepare($this->INSERTPRIPADANJEAUTORA);
+        $statement->bindValue(1, $numera_id);
+        $statement->bindValue(2, $autor_id);
+        $statement->bindValue(3, $uloga);
 
         $statement->execute();
     }

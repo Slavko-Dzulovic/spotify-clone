@@ -5,6 +5,7 @@ echo $msg;
 
 $podaci_albumi = isset($podaci_albumi) ? $podaci_albumi : "";
 $zanrovi = isset($zanrovi) ? $zanrovi : "";
+$autori = isset($autori) ? $autori : "";
 
 if(session_status() == PHP_SESSION_NONE)
 {
@@ -33,6 +34,26 @@ if($_SESSION['loggedIn']['admin']==1)
         <label for="datum_objavljivanja">Datum objavljivanja</label><br>
         <input type="date" name="datum_objavljivanja" placeholder="Unesite datum objavljivanja..." ><br>
 
+        <label for="autor">Autor</label><br>
+        <select name="autor" id=""><br>
+            <?php
+            foreach ($autori as $a)
+            {?>
+                <option value="<?=$a['id']?>"><?php echo $a['id']." - ".$a['ime']." ".$a['prezime']?></option>
+                <?php
+            }
+            ?>
+        </select>
+        <br>
+
+        <label for="uloga">Uloga autora?</label><br>
+        <select name="uloga" id=""><br>
+            <option value="autor">Autor</option>
+            <option value="saradnik">Saradnik</option>
+        </select>
+        <br>
+
+
         <label for="album_naziv">Album</label><br>
         <select name="album_naziv" id=""><br>
             <?php
@@ -40,7 +61,6 @@ if($_SESSION['loggedIn']['admin']==1)
             {?>
                 <option value="<?=$pa['id']?>"><?php echo $pa['id']." - ".$pa['naziv']." (".$pa['ime']." ".$pa['prezime'].")"?></option>
                 <?php
-                $_POST['autor_id'] = $pa['aut_id'];
             }
             ?>
         </select>

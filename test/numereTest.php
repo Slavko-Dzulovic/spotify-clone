@@ -16,8 +16,14 @@
     $numere = $dao->getAllNumere();
 
 //    $dao->insertMetapodatak("test", "test123");
-//    var_dump($dao->getLastMetapodatak());
+    var_dump($dao->getLastMetapodatakID());
+    var_dump($dao->getLastNumeraID());
 
+    $id = $dao->getLastMetapodatakID();
+    $idn = $dao->getLastNumeraID();
+
+    echo $id['id'];
+    echo $idn['id'];
 
     foreach ($numere as $numera)
     {

@@ -1,5 +1,8 @@
 <?php
 require_once '../numere/DAONumere.php';
+require_once '../albumi/DAOAlbumi.php';
+require_once '../zanrovi/DAOZanrovi.php';
+require_once '../autori/DAOAutori.php';
 
 class controllerNumere
 {
@@ -9,6 +12,20 @@ class controllerNumere
         $numere = $dao->getAllNumere();
 
         include '../numere/viewDashboard.php';
+    }
+
+    function gotoInsertNew()
+    {
+//        $dao = new DAONumere();
+        $daoAlbumi = new DAOAlbumi();
+        $daoZanrovi = new DAOZanrovi();
+        $daoAutori = new DAOAutori();
+        $podaci_albumi = $daoAlbumi->getAllAlbumiAndAutori();
+        $zanrovi = $daoZanrovi->getAllZanrovi();
+        $autori = $daoAutori->getAllAuthors();
+//        $numere = $dao->getAllNumere();
+
+        include '../numere/viewAddNewTrack.php';
     }
 
     function gotoAuthor()
@@ -40,35 +57,31 @@ class controllerNumere
         $duzina_trajanja = isset($_POST['duzina_trajanja']) ? $this->sanitiseInput($_POST['duzina_trajanja']) : "";
         $datum_objavljivanja = isset($_POST['datum_objavljivanja']) ? $_POST['datum_objavljivanja'] : "";
         $album_id = isset($_POST['album_naziv']) ? $_POST['album_naziv'] : "";
-        $autor_id = isset($_POST['autor_id']) ? $_POST['autor_id'] : "";
+        $autor_id = isset($_POST['autor']) ? $_POST['autor'] : "";
+        $uloga = isset($_POST['uloga']) ? $_POST['uloga'] : "";
         $zanr_id = isset($_POST['zanr']) ? $_POST['zanr'] : "";
         $linkFajl = isset($_POST['ref_fajl']) ? $this->sanitiseInput($_POST['ref_fajl']) : "";
         $linkOmot = isset($_POST['ref_omot']) ? $this->sanitiseInput($_POST['ref_omot']) : "";
 
-        var_dump($naziv);
-        var_dump($duzina_trajanja);
-        var_dump($datum_objavljivanja);
-        var_dump($album_id);
-        var_dump($autor_id);
-        var_dump($zanr_id);
-        var_dump($linkFajl);
-        var_dump($linkOmot);
-
-
-        if(!empty($naziv) && !empty($duzina_trajanja) && !empty($datum_objavljivanja) && !empty($album_id) && !empty($linkFajl) && !empty($linkOmot) && !empty($autor_id) && !empty($zanr_id))
+        if(!empty($naziv) && !empty($duzina_trajanja) && !empty($datum_objavljivanja) && !empty($album_id) && !empty($uloga) && !empty($linkFajl) && !empty($linkOmot) && !empty($autor_id) && !empty($zanr_id))
         {
             $dao->insertMetapodatak($linkFajl, $linkOmot);
             $metapodatakID = $dao->getLastMetapodatakID();
-            $dao->insertNumera($naziv, $duzina_trajanja, $datum_objavljivanja, $album_id, $metapodatakID, $zanr_id);
-            $dao->getAllNumereZanrAlbum();
+
+            $dao->insertNumera($naziv, $duzina_trajanja, $datum_objavljivanja, $album_id, $metapodatakID['id'], $zanr_id);
+            $numeraID = $dao->getLastNumeraID();
+
+            $dao->insertPripadanjeAutora($numeraID['id'], $autor_id, $uloga);
+
+            $numere = $dao->getAllNumereZanrAlbum();
 
             include "./viewListAllTracks.php";
         }
         else
         {
             $msg = "Popunite sva polja!";
-//            header("Location: ./?action=goAddTrack&msg=$msg");
-            include "./viewAddNewTrack.php";
+            header("Location: ./?action=goAddTrack&msg=$msg");
+//            include "./viewAddNewTrack.php";
         }
 
 
