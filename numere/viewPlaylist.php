@@ -49,11 +49,12 @@ if (isset($_SESSION['loggedIn'])) {
             <div id="hamburger" class="hamburger"></div>
         </div>
         <div class="menu" id="menu">
-            <a href="../numere/?action=gotoDash"><i class="fas fa-home"></i></a>
+            <a href="../numere/?action=dash"><i class="fas fa-home"></i></a>
             <a href="../numere/?action=gotoPlaylist&playlist_id=<?php echo $favPlejlista['id']; ?>"><i class="fas fa-compact-disc"></i></a>
             <?php if($_SESSION['loggedIn']['admin'] == 1) { ?>
                 <a href="../korisnici/?action=dashAdmin"><i class="fas fa-user-tie"></i></a>
             <?php }?>
+            <a href="../numere/?action=gotoSearch"><i class="fas fa-search"></i></a>
             <a href="../korisnici/?action=gotoLogout"><i class="fas fa-sign-out-alt"></i></a>
         </div>
         <div class="wrapper">

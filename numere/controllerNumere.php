@@ -17,6 +17,11 @@ class controllerNumere
         include '../numere/viewDashboard.php';
     }
 
+    function gotoSearch()
+    {
+        include '../numere/viewSearch.php';
+    }
+
     function gotoPlaylist()
     {
         $playlist_id = isset($_GET['playlist_id']) ? $_GET['playlist_id'] : "";
@@ -158,10 +163,23 @@ class controllerNumere
         return $dao->getFavouriteNumere($id);
     }
 
-    function  getPlaylistByKorisnik($id)
+    function getPlaylistByKorisnik($id)
     {
         $dao = new DAONumere();
         return $dao->getPlaylistByKorisnik($id);
+    }
+
+    function searchAll()
+    {
+        $string = isset($_POST['search_string']) ? $_POST['search_string'] : "";
+        $dao = new DAONumere();
+        $numere = $dao->getAllNumereSearch($string);
+        $autori = $dao->getAllAutoriSearch($string);
+        $plejliste = $dao->getAllPlejlisteSearch($string);
+        $albumi = $dao->getAllAlbumiSearch($string);
+
+        include '../numere/viewSearch.php';
+
     }
 }
 
