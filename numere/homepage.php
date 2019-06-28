@@ -49,7 +49,7 @@
     <hr>
 
     <div class="glider-contain">
-        <h1>Artists</h1>
+        <h1 class="tittle">Artists</h1>
         <div class="glider">
             <div class="card" style="width:300px">
                 <img class="card-img-top" src="https://i.imgur.com/gFaix1W.jpg" alt="Card image"
@@ -101,8 +101,9 @@
     </div>
     <hr>
     <!--Albums gliders-->
+
     <div class="glider-contain">
-        <h1> Albums</h1>
+        <h1 class="tittle"> Albums </h1>
         <div class="glider g1">
             <div class="card" style="width:300px">
                 <img class="card-img-top" src="https://i.imgur.com/gFaix1W.jpg" alt="Card image"
@@ -145,7 +146,7 @@
     </div>
     <!--Drugi-->
     <div class="glider-contain">
-        <h1>Play lists</h1>
+        <h1 class="tittle">Play lists</h1>
         <div class="glider g2">
             <div class="card" style="width:300px">
                 <img class="card-img-top" src="https://i.imgur.com/gFaix1W.jpg" alt="Card image"
@@ -197,7 +198,7 @@
     </div>
     <!--Treci-->
     <div class="glider-contain">
-        <h1> New songs</h1>
+        <h1 class="tittle"> New songs</h1>
         <div class="glider g3">
             <div class="card" style="width:300px">
                 <img class="card-img-top" src="https://i.imgur.com/gFaix1W.jpg" alt="Card image"

@@ -149,10 +149,8 @@ source{
     text-align: center;
 }
 
-.me{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.glider-contain h1{
+    margin-left: 30px;
 }
 
 .naslov h1{
