@@ -21,7 +21,7 @@
             <div class="header__bg"></div>
             <h1>DOBRODOŠLI!</h1>
             <br>
-            <h2>Uzicajte u muzici</h2>
+            <h2>Uzivajte u muzici</h2>
         </div>
         <section>
             <h1 id="korisnik"> <?php echo $ime. ' ' . $prezime; ?></h1>
