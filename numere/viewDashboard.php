@@ -12,6 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (isset($_SESSION['loggedIn'])) {
+    $favPlejlista = $ct->getPlaylistByKorisnik($_SESSION['loggedIn']['id']);
     if (!empty($numere) && !empty($albumi) && !empty($autori) && !empty($plejliste)) {
         ?>
         <!DOCTYPE html>
@@ -49,10 +50,12 @@ if (isset($_SESSION['loggedIn'])) {
             <div id="hamburger" class="hamburger"></div>
         </div>
         <div class="menu" id="menu">
-            <a href=""><i class="fas fa-home"></i></a>
-            <a href=""><i class="fas fa-headphones"></i></a>
-            <a href=""><i class="fas fa-compact-disc"></i></a>
-            <a href=""><i class="fas fa-user-tie"></i></a>
+            <a href="../numere/?action=gotoDash"><i class="fas fa-home"></i></a>
+            <a href="../numere/?action=gotoPlaylist&playlist_id=<?php echo $favPlejlista['id']; ?>"><i class="fas fa-compact-disc"></i></a>
+            <?php if($_SESSION['loggedIn']['admin'] == 1) { ?>
+            <a href="../korisnici/?action=dashAdmin"><i class="fas fa-user-tie"></i></a>
+            <?php }?>
+            <a href="../korisnici/?action=gotoLogout"><i class="fas fa-sign-out-alt"></i></a>
         </div>
         <div class="wrapper">
             <div class="naslov">
