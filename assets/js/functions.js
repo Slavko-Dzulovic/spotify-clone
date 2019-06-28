@@ -53,6 +53,12 @@ function addToQueue(jsonNumera, album = false) {
     }
 }
 
+function addToQueueOneSong(jsonNumera) {
+            var notStored = [];
+            notStored.push(jsonNumera);
+            sessionStorage.setItem("queue", JSON.stringify(notStored));
+}
+
 function deleteQueue() {
     sessionStorage.removeItem("queue");
 }
@@ -87,6 +93,7 @@ $(document).ready(function () {
         $(this).parent().find(".album-song-list").fadeToggle("fast");
     });
 });
+
 
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut(1000);

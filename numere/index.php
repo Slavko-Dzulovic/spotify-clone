@@ -32,6 +32,10 @@
                     $ct = new controllerNumere();
                     $ct->addNumeraToUserPlaylist();
                     break;
+                case 'gotoPlaylist':
+                    $ct = new controllerNumere();
+                    $ct->gotoPlaylist();
+                    break;
             }
             break;
         case 'POST':

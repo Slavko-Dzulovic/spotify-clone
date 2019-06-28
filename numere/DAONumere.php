@@ -25,9 +25,64 @@ class DAONumere
     private $INSERTNUMERA = "INSERT INTO numere(naziv, duzina_trajanja, datum_objavljivanja, album_id, metapodatak_id, zanr_id) VALUES (?, ?, ?, ?, ?, ?)";
     private $INSERTPRIPADANJEAUTORA = "INSERT INTO pripadanje_autora(numera_id, autor_id, uloga) VALUES (?, ?, ?)";
 
+    private $GETALLALBUMS = "SELECT * FROM albumi;";
+    private $GETALLARTISTS = "SELECT * FROM autori;";
+    private $GETALLPLAYLISTS = "SELECT *, p.id as playlist_id FROM plejliste p JOIN korisnici k ON p.korinsik_id = k.id;";
+
+    private $GETALLNUMEREBYPLAYLIST = "SELECT *, n.id as track_id FROM numere n JOIN pripadanje_plejlista pp ON n.id = pp.numera_id  JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id JOIN metapodaci m on n.metapodatak_id = m.id WHERE pp.plejlista_id = ?";
+    private $GETPLAYLISTBYID = "SELECT * FROM plejliste p JOIN korisnici k ON p.korinsik_id = k.id WHERE p.id = ?";
+
+
     public function __construct()
     {
         $this->db = DB::createInstance();
+    }
+
+    public function getNumereByPlaylist($id)
+    {
+        $statment = $this->db->prepare($this->GETALLNUMEREBYPLAYLIST);
+        $statment->bindValue(1, $id);
+        $statment->execute();
+
+        $result = $statment->fetchAll();
+        return $result;
+    }
+
+    public function getPlaylistById($id)
+    {
+        $statment = $this->db->prepare($this->GETPLAYLISTBYID);
+        $statment->bindValue(1, $id);
+        $statment->execute();
+
+        $result = $statment->fetch();
+        return $result;
+    }
+
+    public function getAllAlbumi()
+    {
+        $statment = $this->db->prepare($this->GETALLALBUMS);
+        $statment->execute();
+
+        $result = $statment->fetchAll();
+        return $result;
+    }
+
+    public function getAllAutori()
+    {
+        $statment = $this->db->prepare($this->GETALLARTISTS);
+        $statment->execute();
+
+        $result = $statment->fetchAll();
+        return $result;
+    }
+
+    public function getAllPlejliste()
+    {
+        $statment = $this->db->prepare($this->GETALLPLAYLISTS);
+        $statment->execute();
+
+        $result = $statment->fetchAll();
+        return $result;
     }
 
     public function getLastMetapodatakID()
@@ -103,11 +158,9 @@ class DAONumere
         $statment = $this->db->prepare($this->INSERTINUSERPLAYLIST);
         $statment->bindValue(1, $id);
         $statment->bindValue(2, $numera_id);
-        if($statment->execute())
-        {
+        if ($statment->execute()) {
             return true;
-        }
-        else {
+        } else {
             echo "Nesto je poslo naopako!";
         }
     }

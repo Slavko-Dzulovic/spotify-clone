@@ -9,6 +9,10 @@ body{
       margin: 0;
       padding: 0;
   }
+
+  #author-name{
+      text-align: left;
+  }
   
   
   .toggle{

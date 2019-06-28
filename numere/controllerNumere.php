@@ -10,8 +10,22 @@ class controllerNumere
     {
         $dao = new DAONumere();
         $numere = $dao->getAllNumere();
+        $autori = $dao->getAllAutori();
+        $plejliste = $dao->getAllPlejliste();
+        $albumi = $dao->getAllAlbumi();
 
         include '../numere/viewDashboard.php';
+    }
+
+    function gotoPlaylist()
+    {
+        $playlist_id = isset($_GET['playlist_id']) ? $_GET['playlist_id'] : "";
+        $dao = new DAONumere();
+
+        $plejlista = $dao->getPlaylistById($playlist_id);
+        $numere = $dao->getNumereByPlaylist($playlist_id);
+
+        include '../numere/viewPlaylist.php';
     }
 
     function gotoInsertNew()
@@ -32,8 +46,7 @@ class controllerNumere
     {
         $autor_id = isset($_GET['autorId']) ? $_GET['autorId'] : "";
 
-        if (!empty($autor_id))
-        {
+        if (!empty($autor_id)) {
             $dao = new DAONumere();
             $albumi = $dao->getAlbumAndNumereByAutorId($autor_id);
 
@@ -63,8 +76,7 @@ class controllerNumere
         $linkFajl = isset($_POST['ref_fajl']) ? $this->sanitiseInput($_POST['ref_fajl']) : "";
         $linkOmot = isset($_POST['ref_omot']) ? $this->sanitiseInput($_POST['ref_omot']) : "";
 
-        if(!empty($naziv) && !empty($duzina_trajanja) && !empty($datum_objavljivanja) && !empty($album_id) && !empty($uloga) && !empty($linkFajl) && !empty($linkOmot) && !empty($autor_id) && !empty($zanr_id))
-        {
+        if (!empty($naziv) && !empty($duzina_trajanja) && !empty($datum_objavljivanja) && !empty($album_id) && !empty($uloga) && !empty($linkFajl) && !empty($linkOmot) && !empty($autor_id) && !empty($zanr_id)) {
             $dao->insertMetapodatak($linkFajl, $linkOmot);
             $metapodatakID = $dao->getLastMetapodatakID();
 
@@ -76,9 +88,7 @@ class controllerNumere
             $numere = $dao->getAllNumereZanrAlbum();
 
             include "./viewListAllTracks.php";
-        }
-        else
-        {
+        } else {
             $msg = "Popunite sva polja!";
             header("Location: ./?action=goAddTrack&msg=$msg");
 //            include "./viewAddNewTrack.php";
@@ -118,6 +128,12 @@ class controllerNumere
             $dao->insertNumeraInUserPlaylist($playlist_id, $numera_id);
         }
         header("Location:../numere/?action=gotoAuthor&autorId=" . $autor_id);
+    }
+
+    function getNumeraById($id)
+    {
+        $dao = new DAONumere();
+        return $dao->getNumeraById($id);
     }
 }
 

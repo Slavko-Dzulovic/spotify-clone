@@ -206,7 +206,7 @@ if (isset($_SESSION['loggedIn'])) {
                                 </div>
                             </div>
                             <div class="col-6">
-                                <img id="song-cover" src="../assets/img/template.svg" alt="..."
+                                <img id="song-cover" src="../assets/img/fav.jpg" alt="..."
                                      class="img-thumbnail cover-img"
                                      width="200px" height="200px">
                             </div>
