@@ -130,10 +130,38 @@ class controllerNumere
         header("Location:../numere/?action=gotoAuthor&autorId=" . $autor_id);
     }
 
+    function deleteNumeraFromUserPlaylist()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $numera_id = isset($_GET['numera_id']) ? $_GET['numera_id'] : "";
+        $playlist_id = isset($_GET['playlist_id']) ? $_GET['playlist_id'] : "";
+
+        $dao = new DAONumere();
+
+        if (!empty($playlist_id) && !empty($playlist_id) && !empty($numera_id)) {
+            $dao->deleteNumeraFromPlaylist($playlist_id, $numera_id);
+        }
+        header("Location:../numere/?action=gotoPlaylist&playlist_id=" . $playlist_id);
+    }
+
     function getNumeraById($id)
     {
         $dao = new DAONumere();
         return $dao->getNumeraById($id);
+    }
+
+    function getAddedNumere($id)
+    {
+        $dao = new DAONumere();
+        return $dao->getFavouriteNumere($id);
+    }
+
+    function  getPlaylistByKorisnik($id)
+    {
+        $dao = new DAONumere();
+        return $dao->getPlaylistByKorisnik($id);
     }
 }
 

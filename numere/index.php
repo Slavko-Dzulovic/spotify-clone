@@ -36,6 +36,10 @@
                     $ct = new controllerNumere();
                     $ct->gotoPlaylist();
                     break;
+                case 'deleteFromFavourite':
+                    $ct = new controllerNumere();
+                    $ct->deleteNumeraFromUserPlaylist();
+                    break;
             }
             break;
         case 'POST':

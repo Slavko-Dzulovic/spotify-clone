@@ -16,7 +16,7 @@ class DAONumere
 
     private $INSERTINUSERPLAYLIST = "INSERT INTO pripadanje_plejlista(plejlista_id, numera_id) VALUES (?, ?); ";
 
-    private $GETPLAYLISTBYUSER = "SELECT id FROM plejliste WHERE korinsik_id = ?;";
+    private $GETPLAYLISTBYUSER = "SELECT id FROM plejliste WHERE korisnik_id = ?;";
 
     private $INSERTMETAPODATAK = "INSERT INTO metapodaci(ref_fajla, ref_omot) VALUES(?, ?)";
     private $GETLASTMETAPODATAKID = "SELECT id FROM metapodaci ORDER BY id DESC LIMIT 1";
@@ -27,20 +27,54 @@ class DAONumere
 
     private $GETALLALBUMS = "SELECT * FROM albumi;";
     private $GETALLARTISTS = "SELECT * FROM autori;";
-    private $GETALLPLAYLISTS = "SELECT *, p.id as playlist_id FROM plejliste p JOIN korisnici k ON p.korinsik_id = k.id;";
+    private $GETALLPLAYLISTS = "SELECT *, p.id as playlist_id FROM plejliste p JOIN korisnici k ON p.korisnik_id = k.id;";
 
     private $GETALLNUMEREBYPLAYLIST = "SELECT *, n.id as track_id FROM numere n JOIN pripadanje_plejlista pp ON n.id = pp.numera_id  JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id JOIN metapodaci m on n.metapodatak_id = m.id WHERE pp.plejlista_id = ?";
-    private $GETPLAYLISTBYID = "SELECT * FROM plejliste p JOIN korisnici k ON p.korinsik_id = k.id WHERE p.id = ?";
+    private $GETPLAYLISTBYID = "SELECT *, p.id as plejlista_id FROM plejliste p JOIN korisnici k ON p.korisnik_id = k.id WHERE p.id = ?";
 
+    private $DELETENUMERAFROMPLAYLIST = "DELETE FROM pripadanje_plejlista WHERE plejlista_id = ? AND numera_id = ?";
+
+    private $GETPLAYLISTBYKORISNIK = "SELECT * FROM plejliste WHERE korisnik_id = ?;";
+
+    private $GETNUMEREADDEDTOFAVOURITE = "SELECT pp.numera_id as numera_id FROM pripadanje_plejlista pp JOIN plejliste p on p.id = pp.plejlista_id WHERE p.korisnik_id = ?";
 
     public function __construct()
     {
         $this->db = DB::createInstance();
     }
 
+    public function deleteNumeraFromPlaylist($playlist_id, $numera_id)
+    {
+        $statement = $this->db->prepare($this->DELETENUMERAFROMPLAYLIST);
+        $statement->bindValue(1, $playlist_id);
+        $statement->bindValue(2, $numera_id);
+
+        $statement->execute();
+    }
+
+    public function getPlaylistByKorisnik($id)
+    {
+        $statment = $this->db->prepare($this->GETPLAYLISTBYKORISNIK);
+        $statment->bindValue(1, $id);
+        $statment->execute();
+
+        $result = $statment->fetch();
+        return $result;
+    }
+
     public function getNumereByPlaylist($id)
     {
         $statment = $this->db->prepare($this->GETALLNUMEREBYPLAYLIST);
+        $statment->bindValue(1, $id);
+        $statment->execute();
+
+        $result = $statment->fetchAll();
+        return $result;
+    }
+
+    public function getFavouriteNumere($id)
+    {
+        $statment = $this->db->prepare($this->GETNUMEREADDEDTOFAVOURITE);
         $statment->bindValue(1, $id);
         $statment->execute();
 

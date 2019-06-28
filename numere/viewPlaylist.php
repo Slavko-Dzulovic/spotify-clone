@@ -1,7 +1,7 @@
 <?php
 
 $numere = isset($numere) ? $numere : "";
-$plejlista = isset($plejlista)? $plejlista : "";
+$plejlista = isset($plejlista) ? $plejlista : "";
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -101,11 +101,19 @@ if (isset($_SESSION['loggedIn'])) {
                                                 <button id="play-button"
                                                         onclick='setNewSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT); ?>, true); addToQueue(<?php echo json_encode($numere, JSON_PRETTY_PRINT); ?>, true)'>
                                                     <i class="fas fa-play"></i></button>
-                                                <a href="../numere/?action=addToFavourite&autor_id=<?php echo $numera['autor_id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i
-                                                            class="fas fa-heart"></i></a>
-                                                <a href="<?php echo $numera['ref_fajla']; ?>"
-                                                   download="<?php echo $numera['naziv']; ?>"
-                                                   target="_blank"><i class="fas fa-arrow-down"></i></a>
+                                                <?php if ($_SESSION['loggedIn']['id'] != $plejlista['korisnik_id']) { ?>
+                                                    <a href="../numere/?action=addToFavourite&autor_id=<?php echo $numera['autor_id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i
+                                                                class="fas fa-heart"></i></a>
+                                                <?php } ?>
+                                                <?php if ($_SESSION['loggedIn']['id'] == $plejlista['korisnik_id']) { ?>
+                                                    <a href="../numere/?action=deleteFromFavourite&playlist_id=<?php echo $plejlista['plejlista_id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i
+                                                                class="fas fa-minus"></i></a>
+                                                <?php } ?>
+                                                <?php if ($_SESSION['loggedIn']['premijum'] == 1) { ?>
+                                                    <a href="<?php echo $numera['ref_fajla']; ?>"
+                                                       download="<?php echo $numera['naziv']; ?>"
+                                                       target="_blank"><i class="fas fa-arrow-down"></i></a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <?php } ?>

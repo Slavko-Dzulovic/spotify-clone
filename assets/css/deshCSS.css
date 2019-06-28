@@ -205,7 +205,7 @@ body{
   .fa-peace{
       cursor: pointer;
   }
-  .fa-play, .fa-heart, .fa-arrow-down{
+  .fa-play, .fa-heart, .fa-arrow-down, .fa-minus{
       font-size: 1rem;
       margin:0 5px 0 5px ;
   }

@@ -31,6 +31,7 @@ class DAOKorisnici
         $statement->bindValue(5, $pol);
         $statement->bindValue(6, $datum_rodj);
         $statement->bindValue(7, $lozinka);
+        $statement->bindValue(7, $lozinka);
         $statement->bindValue(8, $premijum);
 
         $statement->execute();

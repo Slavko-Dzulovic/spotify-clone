@@ -5,10 +5,13 @@ require_once '../numere/DAONumere.php';
 $ct = new controllerNumere();
 $albumi = isset($albumi) ? $albumi : "";
 
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (isset($_SESSION['loggedIn'])) {
+    $numera_ids = $ct->getAddedNumere($_SESSION['loggedIn']['id']);
+    $plejlista = $ct->getPlaylistByKorisnik($_SESSION['loggedIn']['id']);
     if (!empty($albumi)) {
         ?>
         <!DOCTYPE html>
@@ -93,10 +96,19 @@ if (isset($_SESSION['loggedIn'])) {
                                                             <button id="play-button"
                                                                     onclick='setNewSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT); ?>); addToQueue(<?php echo json_encode($numere, JSON_PRETTY_PRINT); ?>, true)'>
                                                                 <i class="fas fa-play"></i></button>
-                                                            <a href="../numere/?action=addToFavourite&autor_id=<?php echo $album['au_id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i class="fas fa-heart"></i></a>
-                                                            <a href="<?php echo $numera['ref_fajla']; ?>"
-                                                               download="<?php echo $numera['naziv']; ?>"
-                                                               target="_blank"><i class="fas fa-arrow-down"></i></a>
+                                                            <?php $numera_id['numera_id'] = $numera['track_id'];
+                                                            if (in_array($numera_id, $numera_ids) != true) { ?>
+                                                                <a href="../numere/?action=addToFavourite&autor_id=<?php echo $album['au_id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i
+                                                                            class="fas fa-heart"></i></a>
+                                                            <?php } else { ?>
+                                                                <a href="../numere/?action=deleteFromFavourite&playlist_id=<?php echo $plejlista['id']; ?>&numera_id=<?php echo $numera['track_id']; ?>"><i
+                                                                            class="fas fa-minus"></i></a>
+                                                            <?php } ?>
+                                                            <?php if ($_SESSION['loggedIn']['premijum'] == 1) { ?>
+                                                                <a href="<?php echo $numera['ref_fajla']; ?>"
+                                                                   download="<?php echo $numera['naziv']; ?>"
+                                                                   target="_blank"><i class="fas fa-arrow-down"></i></a>
+                                                            <?php } ?>
                                                         </td>
                                                     </tr>
                                                 <?php }
