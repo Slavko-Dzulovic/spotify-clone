@@ -146,7 +146,7 @@ if (isset($_SESSION['loggedIn'])) {
                     <?php foreach ($numere as $numera) {?>
                         <div class="card" style="width:300px">
                             <img class="card-img-top" src="<?php echo $numera['ref_omot']; ?>" alt="Card image"
-                                 style="width:100%; height: 200px; ">
+                                 style="width:100%; height: 170px; ">
                             <?php
                             if ($numera['bend'] == 0) {
                                 $autor_naziv = $numera['ime'] . " " . $numera['prezime'];
@@ -154,7 +154,7 @@ if (isset($_SESSION['loggedIn'])) {
                                 $autor_naziv = $numera['ime'];
                             }
                             ?>
-                            <div class="card-body">
+                            <div class="card-body "  style="width:100%; height: 140px; ">
                                 <a class="title-card" href="../numere/?action=gotoAuthor&autorId=<?php echo $numera['autor_id']; ?>" onclick='addToQueueOneSong(<?php echo json_encode($numera, JSON_PRETTY_PRINT); ?>)'><h4
                                             class="card-title"><?php echo $numera['naziv']; ?></h4>
                                 <p><?php echo $autor_naziv; ?></p></a>
