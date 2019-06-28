@@ -96,7 +96,7 @@ if (isset($_SESSION['loggedIn'])) {
                         ?>
                         <div class="card" style="width:300px">
                             <img class="card-img-top" src="<?php echo $numera_album[0]['ref_omot']; ?>" alt="Card image"
-                                 style="width:100%; height: 90%;">
+                                 style="width:100%; height: 200px;">
                             <div class="card-body">
                                 <?php
                                 if ($numera_album[0]['bend'] == 0) {
@@ -143,7 +143,7 @@ if (isset($_SESSION['loggedIn'])) {
                     <?php foreach ($numere as $numera) {?>
                         <div class="card" style="width:300px">
                             <img class="card-img-top" src="<?php echo $numera['ref_omot']; ?>" alt="Card image"
-                                 style="width:100%; height: 60%;">
+                                 style="width:100%; height: 200px; ">
                             <?php
                             if ($numera['bend'] == 0) {
                                 $autor_naziv = $numera['ime'] . " " . $numera['prezime'];
