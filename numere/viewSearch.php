@@ -61,7 +61,7 @@ if (isset($_SESSION['loggedIn'])) {
     </div>
     <div class="wrapper">
         <div class="naslov">
-            <h1> MNGPFY - Dashboard </h1>
+            <h1> MNGPFY - Pretraga </h1>
         </div>
 
         <hr>
@@ -139,6 +139,7 @@ if (isset($_SESSION['loggedIn'])) {
                 <div id="dots"></div>
             </div>
         <?php } ?>
+        <hr>
         <?php if (!empty($plejliste)) { ?>
             <!--Drugi-->
             <div class="glider-contain">
@@ -161,6 +162,7 @@ if (isset($_SESSION['loggedIn'])) {
                 <div id="dots"></div>
             </div>
         <?php } ?>
+        <hr>
         <?php if (!empty($numere)) { ?>
             <!--Treci-->
             <div class="glider-contain">

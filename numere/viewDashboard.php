@@ -121,6 +121,7 @@ if (isset($_SESSION['loggedIn'])) {
                 <button class="glider-next gn1">&raquo;</button>
                 <div id="dots"></div>
             </div>
+            <hr>
             <!--Drugi-->
             <div class="glider-contain">
                 <h1> Plejliste </h1>
@@ -140,6 +141,7 @@ if (isset($_SESSION['loggedIn'])) {
                 <button class="glider-next gn2">&raquo;</button>
                 <div id="dots"></div>
             </div>
+            <hr>
             <!--Treci-->
             <div class="glider-contain">
                 <h1> Najnovije numere </h1>

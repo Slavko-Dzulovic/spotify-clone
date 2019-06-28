@@ -39,7 +39,7 @@ class DAONumere
     private $GETNUMEREADDEDTOFAVOURITE = "SELECT pp.numera_id as numera_id FROM pripadanje_plejlista pp JOIN plejliste p on p.id = pp.plejlista_id WHERE p.korisnik_id = ?";
 
     /// ZA PRETRAGU
-    private $GETALLNUMERESEARCH = "SELECT *, n.id as track_id FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE n.naziv LIKE ? ORDER BY n.id DESC;";
+    private $GETALLNUMERESEARCH = "SELECT *, n.id as track_id FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE n.naziv LIKE ? OR a.ime LIKE ? OR a.prezime LIKE ? ORDER BY n.id DESC;";
     private $GETALLARTISTSSEARCH = "SELECT * FROM autori WHERE ime LIKE ? OR prezime LIKE ? OR zemlja LIKE ?;";
     private $GETALLPLAYLISTSSEARCH = "SELECT *, p.id as playlist_id FROM plejliste p JOIN korisnici k ON p.korisnik_id = k.id WHERE p.naziv LIKE ?;";
     private $GETALLALBUMSSEARCH = "SELECT * FROM albumi WHERE naziv LIKE ?;";
@@ -53,6 +53,8 @@ class DAONumere
     {
         $statment = $this->db->prepare($this->GETALLNUMERESEARCH);
         $statment->bindValue(1, '%'.$string.'%');
+        $statment->bindValue(2, '%'.$string.'%');
+        $statment->bindValue(3, '%'.$string.'%');
         $statment->execute();
 
         $result = $statment->fetchAll();
