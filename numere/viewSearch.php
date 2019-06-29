@@ -39,6 +39,7 @@ if (isset($_SESSION['loggedIn'])) {
         <link rel="stylesheet" href="../assets/css/loader.css">
         <link rel="stylesheet" href="../assets/css/indexCSS.css">
         <link rel="stylesheet" href="../assets/css/glider.css">
+        <link rel="stylesheet" href="../assets/css/search.css">
         <script type="text/javascript" src="../assets/js/functions.js"></script>
         <script src="../assets/js/glider.js"></script>
 
@@ -69,11 +70,11 @@ if (isset($_SESSION['loggedIn'])) {
             <div class="col-12">
                 <form action="../numere/" method="post">
                     <div class="row">
-                        <div class="col-6">
-                            <input type="text" name="search_string" placeholder="Pretrazite numeru, album, plejlistu..." value="<?php echo $string; ?>">
+                        <div class="col-4 search-div">
+                            <input type="text" name="search_string" class="form-control" id="search" placeholder="Pretrazite numeru, album, plejlistu..." value="<?php echo $string; ?>">
                         </div>
-                        <div class="col-6">
-                            <input type="submit" name="action" value="Pretrazi">
+                       <div class="col-4 dugme">
+                            <input type="submit" name="action" class="" id="searchButton" value="Pretrazi">
                         </div>
                     </div>
                 </form>
