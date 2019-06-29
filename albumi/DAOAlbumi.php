@@ -32,14 +32,4 @@ class DAOAlbumi
         $result = $statment->fetchAll();
         return $result;
     }
-
-    public function getNumeraById($id)
-    {
-        $statment = $this->db->prepare($this->GETNUMERABYID);
-        $statment->bindValue(1, $id);
-        $statment->execute();
-
-        $result = $statment->fetch();
-        return $result;
-    }
 }
