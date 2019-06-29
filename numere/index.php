@@ -50,6 +50,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $cn = new controllerNumere();
                 $cn->addNewTrack();
                 break;
+
             case 'Pretrazi':
                 $cn = new controllerNumere();
                 $cn->searchAll();

@@ -271,7 +271,7 @@
                 </li>
 
                 <li class="list-item">
-                    <i class="fas fa-peace" data-toggle="tooltip" data-placement="bottom" title="Shere love!"></i>
+                    <i class="fas fa-peace" data-toggle="tooltip" data-placement="bottom" title="Share love!"></i>
                 </li>
 
                 <li class="list-item  ">
