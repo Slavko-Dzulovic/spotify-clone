@@ -9,7 +9,7 @@ class DAONumere
     private $GETNUMERABYID = "SELECT * FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE n.id = ?;";
     private $GETNUMEREBYZANR = "SELECT * FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE zanr_id = ?;";
 
-    private $GETALLALBUMSANDSONGSBYAUTOR = "SELECT a.id as a_id, a.naziv as album_naziv, au.ref_slika as ref_slika, au.ime, au.prezime, m.ref_omot, au.id as au_id FROM albumi a JOIN autori au on au.id = a.autor_id JOIN numere n JOIN metapodaci m on n.metapodatak_id = m.id AND  a.id = n.album_id  WHERE a.id = ? GROUP BY a.id;";
+    private $GETALLALBUMSANDSONGSBYAUTOR = "SELECT a.id as a_id, a.naziv as album_naziv, au.ref_slika as ref_slika, au.ime, au.prezime, au.id as au_id FROM albumi a JOIN autori au on au.id = a.autor_id  WHERE au.id = ?;";
     private $GETNUMERABYALBUM = "SELECT *, n.id as track_id FROM numere n JOIN metapodaci m ON n.metapodatak_id = m.id JOIN autori a JOIN pripadanje_autora pa ON n.id = pa.numera_id AND a.id = pa.autor_id WHERE n.album_id = ? ORDER BY n.album_id;";
 
     private $GETALLNUMEREZANRALBUM = "SELECT n.id, n.naziv, n.duzina_trajanja, n.datum_objavljivanja, z.naziv AS 'zanr', a.naziv AS 'album', aut.ime AS 'ime_autora', aut.prezime AS 'prezime' FROM numere n JOIN zanrovi z ON n.zanr_id = z.id JOIN albumi a ON a.id = n.album_id JOIN pripadanje_autora pa ON pa.numera_id = n.id JOIN autori aut ON aut.id = pa.autor_id";

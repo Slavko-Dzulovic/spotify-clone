@@ -77,7 +77,7 @@ if (isset($_SESSION['loggedIn'])) {
                                 ?>
                                 <div class="album">
                                     <li class="list-group-item  album-list"><img
-                                                src="<?php echo $album['ref_omot']; ?>"
+                                                src="<?php echo $numere[0]['ref_omot']; ?>"
                                                 alt="" width="100px" height="100px"><?php echo $album['album_naziv']; ?>
                                     </li>
                                     <li class="list-group-item album-song-list">
