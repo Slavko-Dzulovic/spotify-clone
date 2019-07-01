@@ -26,6 +26,8 @@
             <a href="../autori/?action=listAllAuthors">Izlistaj sve autore</a><br>
             <a href="../numere/?action=listAllTracks">Izlistaj sve numere</a><br>
             <a href="../albumi/?action=listAllAlbums">Izlistaj sve albume</a><br>
+            <a href="../zanrovi/?action=listAllGenres">Izlistaj sve žanrove</a><br>
+            <a href="../plejliste/?action=listAllPlaylists">Izlistaj sve plejliste</a><br>
 
             <a href="../korisnici/?action=gotoLogout">Odjavi se!</a>
 

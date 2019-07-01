@@ -13,8 +13,13 @@ switch ($_SERVER['REQUEST_METHOD'])
                 $cz = new controllerZanrovi();
                 $cz->listAllGenres();
                 break;
+
+            case 'goAddGenre':
+                header("Location: ../zanrovi/viewAddNewGenre.php");
+                break;
         }
         break;
+
     case 'POST':
         switch ($action)
         {

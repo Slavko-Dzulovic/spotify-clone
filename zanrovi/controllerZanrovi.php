@@ -4,14 +4,32 @@
 
     class controllerZanrovi
     {
-        function gotoInsertNew()
+        function addNewGenre()
         {
-            $daoZanrovi = new DAOZanrovi();
-            $zanrovi = $daoZanrovi->getAllZanrovi();
+            $dao = new DAOZanrovi();
 
-            include '../zanrovi/viewAddNewGenre.php';
+            $naziv = isset($_POST['naziv']) ? $_POST['naziv'] : "";
+
+            if(!empty($naziv))
+            {
+                $dao->insertZanr($naziv);
+                $zanrovi = $dao->getAllZanrovi();
+                include "../zanrovi/viewAllGenres.php";
+            }
+            else
+            {
+                $msg = "Popunite sva polja!";
+                include "../zanrovi/viewAddNewGenre.php";
+            }
+        }
+
+        function listAllGenres()
+        {
+            $dao = new DAOZanrovi();
+            $zanrovi = $dao->getAllZanrovi();
+
+            include "../zanrovi/viewAllGenres.php";
         }
     }
-
 
 ?>

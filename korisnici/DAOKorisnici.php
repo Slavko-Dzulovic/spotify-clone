@@ -13,8 +13,7 @@ class DAOKorisnici
     private $GRANTADMIN = "UPDATE korisnici SET admin = 1 WHERE id = ?";
     private $GRANTPREMIJUM = "UPDATE korisnici SET premijum = 1 WHERE id = ?";
     private $DELETEKORISNIK = "DELETE FROM korisnici WHERE id = ?";
-//    private $UPDATEKORISNIK = "UPDATE korisnici SET ime = ?, prezime = ?, korisnicko_ime = ?, mejl = ? WHERE ";
-
+    private $GETLASTID = "SELECT id FROM korisnici ORDER BY id DESC LIMIT 1";
 
     public function __construct()
     {
@@ -35,6 +34,15 @@ class DAOKorisnici
         $statement->bindValue(8, $premijum);
 
         $statement->execute();
+    }
+
+    public function getLastKorisnikID()
+    {
+        $statement = $this->db->prepare($this->GETLASTID);
+        $statement->execute();
+
+        $result = $statement->fetch();
+        return $result;
     }
 
     public function getAllKorisnici()
@@ -106,15 +114,4 @@ class DAOKorisnici
         $result = $statement->fetch();
         return $result;
     }
-
-//    public function updateKorisnik($id)
-//    {
-//        $statement = $this->db->prepare($this->DELETEKORISNIK);
-//        $statement->bindValue(1, $id);
-//
-//        $statement->execute();
-//    }
-
-
-
 }

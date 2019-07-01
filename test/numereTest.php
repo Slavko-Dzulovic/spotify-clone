@@ -1,5 +1,6 @@
 <?php
     require_once '../numere/DAONumere.php';
+    require_once '../plejliste/DAOPlejliste.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,9 +16,17 @@
     $dao = new DAONumere();
     $numere = $dao->getAllNumere();
 
+
 //    $dao->insertMetapodatak("test", "test123");
-    var_dump($dao->getLastMetapodatakID());
-    var_dump($dao->getLastNumeraID());
+//    var_dump($dao->getLastMetapodatakID());
+//    var_dump($dao->getLastNumeraID());
+
+    $daoP = new DAOPlejliste();
+    $plejliste = $daoP->getAllPlejliste();
+//    var_dump($plejliste);
+    $numereP = $daoP->viewPlaylistTracks(1);
+//    var_dump($numereP);
+    echo date("Y-m-d")."<br>";
 
     $id = $dao->getLastMetapodatakID();
     $idn = $dao->getLastNumeraID();

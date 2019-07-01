@@ -1,5 +1,6 @@
 <?php
 require_once './DAOKorisnici.php';
+require_once '../plejliste/DAOPlejliste.php';
 
 class controllerKorisnici
 {
@@ -262,6 +263,9 @@ class controllerKorisnici
                             $lozinka = $ck->hashPassword($lozinka);
 
                             $dao->insertKorisnik($ime, $prezime, $korisnicko_ime, $email, $pol, $datum_rodj, $lozinka, $premijum);
+                            $korisnik_id = $dao->getLastKorisnikID();
+                            $daoP = new DAOPlejliste();
+                            $daoP->insertPlejlista($korisnicko_ime." playlist", date("Y-m-d"), $korisnik_id['id']);
 
                             include './viewCompleteRegister.php';
                         }
