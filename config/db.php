@@ -5,9 +5,9 @@ class DB{
     public static function createInstance($config = null)
     {
         $settings['dbname'] = 'mngpfy';
-        $settings['dbhost'] = '192.168.64.2';
-        $settings['dbuser'] = 'jagssi';
-        $settings['dbpass'] = 'kanbera998';
+        $settings['dbhost'] = 'localhost';
+        $settings['dbuser'] = 'root';
+        $settings['dbpass'] = '';
 
         try{
             $dsn = 'mysql:dbname=' . $settings['dbname'] . ';host=' . $settings['dbhost'];

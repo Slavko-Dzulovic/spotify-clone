@@ -1,0 +1,18 @@
+#search{
+    width: 100%;
+    margin-bottom: 50px ;
+
+}
+.row{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-direction: row-reverse;
+
+}
+.search-div{
+    margin-right: 20px;
+}
+.dugme{
+    display: none;
+}

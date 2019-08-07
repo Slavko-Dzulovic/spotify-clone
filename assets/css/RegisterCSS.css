@@ -1,0 +1,59 @@
+body{
+    background: whitesmoke;
+
+}
+#wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+    flex-direction: column;
+    background: whitesmoke;
+}
+form{
+    border: 1px solid grey;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+    background: white;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px grey;
+}
+.velika{
+    width: 400px;
+}
+.datum{
+    width: 160px;
+    border-radius: 5px;
+}
+#pol{
+    margin-right: 15px;
+    border-radius: 5px;
+}
+.button{
+    width: 230px;
+    background-color: #222327 ;
+    color: #FFFFFF;
+    height: 35px;
+    box-shadow: none;
+    margin-left: 10px;
+}
+.button:hover{
+    color: #2ecc71;
+}
+
+#link{
+    text-decoration: none;
+    color: black;
+}
+#slika{
+    width: 100px;
+    height: 100px;
+    top: 40px;
+    position: relative;
+}
+

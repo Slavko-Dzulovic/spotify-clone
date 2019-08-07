@@ -1,0 +1,50 @@
+body{
+    background: whitesmoke;
+
+}
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    flex-direction: column;
+    background: whitesmoke;
+}
+form{
+    border: 1px solid grey;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    background: white;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px grey;
+}
+.dimension{
+    height: 30px;
+    border-radius: 5px;
+}
+.button{
+    width: 175px;
+    background-color: #222327 ;
+    color: #FFFFFF;
+    height: 35px;
+    box-shadow: none;
+}
+.button:hover{
+    color: #2ecc71;
+}
+
+#link{
+    text-decoration: none;
+    color: black;
+}
+#slika{
+    width: 100px;
+    height: 100px;
+    top: 40px;
+    position: relative;
+}

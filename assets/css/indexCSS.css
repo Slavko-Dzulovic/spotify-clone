@@ -1,0 +1,279 @@
+body{
+    /*  background-color: #121315;*/
+    background-color: black;
+    color: #B8B9BD;
+    font-family: 'Bitter', serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box
+}
+
+a{
+     text-decoration: none;
+     color: whitesmoke;
+ }
+
+a:hover{
+    text-decoration: none;
+    color: #2ecc71;
+}
+
+.title-card{
+    text-align: center;
+}
+
+.glider-contain {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.glider-slide {
+    min-height: 150px;
+}
+
+
+.toggle{
+    width: 90px;
+    height: 90px;
+    background-color: #1C1C1E;
+    text-align: center;
+    color: azure;
+    transition:  3s ease;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu{
+    width: 90px;
+    height: 350px;
+    position: absolute;
+    background-color: #1C1C1E;
+    border-bottom-right-radius: 15px;
+    top: 90px;
+    left: -100%;
+    transition:  0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 3;
+}
+.fas{
+    color: #B8B9BD;
+    font-size: 3rem;
+    margin: 10px 0 10px 0;
+}
+.fas:hover{
+    color: #2ecc71;
+}
+.hamburger{
+    width: 40px;
+    height: 5px;
+    background: #2ecc71;
+    position: absolute;
+    transition: 0.4s ease;
+}
+.hamburger:after{
+    content: '';
+    width: 40px;
+    height: 5px;
+    background: #2ecc71;
+    position: absolute;
+    top: -10px;
+    left: 0%;
+    transition: 0.4s ease;
+}
+.hamburger:before{
+    content: '';
+    width: 40px;
+    height: 5px;
+    background: #2ecc71;
+    position: absolute;
+    bottom: -10px;
+    left: 0%;
+    transition: 0.4s ease;
+}
+
+.toggle.active .hamburger:after{
+    transform: rotate(230deg);
+    top: 0px;
+}
+.toggle.active .hamburger:before{
+    transform: rotate(-45deg);
+    top: 0px;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 80%;
+    background: #121315;
+}
+.card-body{
+    color: #B8B9BD;
+    background: #222327;
+}
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card{
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.player{
+    width: 100%;
+}
+source{
+    background: #1C1C1E;
+}
+.card-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.mp3{
+    width: 80%;
+    margin: 0;
+}
+.lista{
+    height: 250px;
+    width: 90%;
+    overflow-y: scroll;
+    color: #B8B9BD;
+}
+.table td{
+    background-color: #222327;
+    color: #B8B9BD;
+}
+.table th{
+    background-color:#222327;
+    color: #B8B9BD;
+}
+.table td:nth-child(odd){
+    text-align: center;
+}
+
+.glider-contain h1{
+    margin-left: 30px;
+}
+
+.naslov h1{
+    font-size: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.one{
+    margin: 2rem 0 2rem 0;
+}
+hr{
+    background: black;
+    height: 1px;
+}
+footer{
+    background-color: #121315;
+    text-align: center;
+    margin-top: 80px;
+}
+footer ul{
+    padding: 1rem;
+    list-style: none;
+
+}
+footer ul li{
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+footer a{
+    text-decoration: none;
+    color: #B8B9BD;
+}
+.fab{
+    color: #B8B9BD;
+    font-size: 2rem;
+}
+
+.hr-footer{
+    height: 1px;
+    background-color: black;
+}
+.copyright{
+    text-align: center;
+    color: #2ecc71;
+    padding: 10px;
+
+}
+
+/*.ffa{
+    display: none;
+    margin: 0 5px 0 5px;
+}*/
+.list-social{
+    padding: 10px;
+}
+.fa-peace{
+    cursor: pointer;
+}
+.fa-play, .fa-heart{
+    font-size: 1rem;
+    margin:0 5px 0 5px ;
+}
+@media(max-width: 1025px){
+    .mp3{
+        width: 100%;
+    }
+}
+@media(max-width: 767px){
+    .play-list{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+    .ffa{
+        margin: 0;
+        font-size: 25px;
+    }
+    .fa-peace{
+        font-size: 2.5rem;
+    }
+    .naslov h1{
+        font-size: 30px;
+    }
+    .menu{
+        width: 100%;
+        top: 50px;
+    }
+    .toggle{
+        width: 60px;
+        height: 50px;
+    }
+    .hamburger{
+        width: 30px;
+        height: 4px;
+    }
+    .hamburger:after{
+        content: '';
+        width: 30px;
+        height: 4px;
+    }
+    .hamburger:before{
+        content: '';
+        width: 30px;
+        height: 4px;
+    }
+}
+
